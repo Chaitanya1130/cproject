@@ -1,8 +1,9 @@
 import React from "react";
 import '../../../Css/Cards/Auth/SignUp.css'
 import { useState } from "react";
-
+import { useNavigate } from "react-router-dom";
 export default function Login(){
+    const nav=useNavigate();
     const [username,setUsername]=useState<string>("");
     const[email,setEmail]=useState<string>("");
     const [password,setPassword]=useState<string>("");
@@ -23,9 +24,12 @@ export default function Login(){
             if(!resp.ok){
                 throw new Error(`Response status: ${resp.status}`);
             }
-            const res=await resp.json;
+            const res=await resp.json();
             console.log(res);
-        }
+            localStorage.setItem("token",res.token);
+            localStorage.setItem("user",JSON.stringify(res.user));
+            nav("/userhome");
+    }
         catch(error){
             console.log(error);
         };
@@ -50,7 +54,9 @@ export default function Login(){
                     <input type="text" placeholder="Username" value={username} onChange={changeUsername} />
                     <input type="email" placeholder="Email" value={email} onChange={changeEmail}/>
                     <input type="password" placeholder="password" value={password} onChange={changePass}/>
-                    <button type="submit" className="signUp-button">Sign In</button>
+                    <button type="submit" className="signUp-button">Sign Up</button>
+                    <button type="submit" className="signIn-button" onClick={()=>nav("/signin")}>Sign In</button>
+
                 </div>
 
             </form>
