@@ -1,0 +1,71 @@
+[
+  {
+    "qname": "C Programming Examples Collection",
+    "qpattern": "C Basics",
+    "difficulty": "easy",
+    "link": "https://www.geeksforgeeks.org/c-programming-examples/"
+  },
+
+  {
+    "qname": "10 Days of JavaScript",
+    "qpattern": "Basic Javascript",
+    "difficulty": "easy",
+    "link": "https://www.hackerrank.com/domains/tutorials/10-days-of-javascript"
+  },
+
+  {
+    "qname": "Input Output in C",
+    "qpattern": "C basics(I/O)",
+    "difficulty": "easy",
+    "link": "https://www.geeksforgeeks.org/input-output-system-calls-c-create-open-close-read-write/"
+  },
+
+  {
+    "qname": "Loops Practice in C",
+    "qpattern": "C basics",
+    "difficulty": "easy",
+    "link": "https://www.geeksforgeeks.org/loops-in-c-and-cpp/"
+  },
+
+  {
+    "qname": "Functions in C",
+    "qpattern": "basics",
+    "difficulty": "easy",
+    "link": "https://www.geeksforgeeks.org/functions-in-c/"
+  },
+
+  {
+    "qname": "JavaScript Variables and Types",
+    "qpattern": "javascript",
+    "difficulty": "easy",
+    "link": "https://www.w3schools.com/js/js_variables.asp"
+  },
+
+  {
+    "qname": "Basic Math Problems",
+    "qpattern": "problem_solving",
+    "difficulty": "easy",
+    "link": "https://www.hackerrank.com/domains/mathematics/fundamentals"
+  },
+
+  {
+    "qname": "Pattern Printing in C",
+    "qpattern": "basics",
+    "difficulty": "easy",
+    "link": "https://www.geeksforgeeks.org/programs-printing-pyramid-patterns-c/"
+  },
+
+  {
+    "qname": "Recursion Introduction",
+    "qpattern": "basics",
+    "difficulty": "easy",
+    "link": "https://www.geeksforgeeks.org/recursion/"
+  },
+
+  {
+    "qname": "JavaScript Functions Basics",
+    "qpattern": "javascript",
+    "difficulty": "easy",
+    "link": "https://www.w3schools.com/js/js_functions.asp"
+  }
+]

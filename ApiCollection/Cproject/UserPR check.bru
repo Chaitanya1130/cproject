@@ -1,0 +1,22 @@
+meta {
+  name: UserPR check
+  type: http
+  seq: 3
+}
+
+post {
+  url: http://localhost:8000/progress/open/5
+  body: json
+  auth: inherit
+}
+
+body:json {
+  {
+    "uid": 1
+  }
+}
+
+settings {
+  encodeUrl: true
+  timeout: 0
+}

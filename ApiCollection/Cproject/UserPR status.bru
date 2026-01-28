@@ -1,0 +1,23 @@
+meta {
+  name: UserPR status
+  type: http
+  seq: 4
+}
+
+post {
+  url: http://localhost:8000/progress/status/5
+  body: json
+  auth: inherit
+}
+
+body:json {
+  {
+    "uid":1,
+    "status":"done"
+  }
+}
+
+settings {
+  encodeUrl: true
+  timeout: 0
+}

@@ -1,0 +1,20 @@
+meta {
+  name: Total User Summary
+  type: http
+  seq: 5
+}
+
+get {
+  url: http://localhost:8000/progress/test
+  body: json
+  auth: inherit
+}
+
+params:query {
+  ~uid: 
+}
+
+settings {
+  encodeUrl: true
+  timeout: 0
+}

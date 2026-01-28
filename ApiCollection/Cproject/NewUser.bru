@@ -1,0 +1,24 @@
+meta {
+  name: NewUser
+  type: http
+  seq: 2
+}
+
+post {
+  url: http://localhost:8000/users/register
+  body: json
+  auth: inherit
+}
+
+body:json {
+  {
+    "username": "p_dev",
+    "email": "p@gmail.com",
+    "password": "p@1130"
+  }
+}
+
+settings {
+  encodeUrl: true
+  timeout: 0
+}

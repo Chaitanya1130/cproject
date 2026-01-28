@@ -1,0 +1,7 @@
+user-> how many questions he has completed 
+
+
+
+
+so user->number of questions whose vis count>1 and 
+user->number of ques that are unvisited

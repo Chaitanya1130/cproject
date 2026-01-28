@@ -1,0 +1,171 @@
+/* .SignUpBox{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+
+    background-color: #f0f2f5;
+    background: linear-gradient(135deg, #454545 0%, #5A5A5A 100%);
+}
+.SignUpForm{
+    background:linear-gradient(100deg,#CC5500 0%, #F5F5DC 100%);
+    padding: 2.5rem;
+    border-radius: 120px;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1);
+    width: 100%;
+    max-width: 400px;
+    display: flex;
+    flex-direction: column;
+}
+.inputFields{
+    padding: 2rem;
+
+    display: flex;
+    flex-direction: column;
+    border: 1px solid black;
+    border-radius: 6px;
+    font-size: 16px;
+    gap: 15px;
+}
+.signUp-button{
+    margin-top: 10px;
+    padding: 12px;
+    background-color: lightgray;
+    color: black;
+    border: none;
+    border-radius: 4px;
+    cursor: inherit;
+    transition: all 0.3s ease;
+}
+.signUp-button:hover {
+    background-color: #555;
+    transform: translateY(-2px); 
+    box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+}
+.signUp-button:active {
+    background-color: #111; 
+    transform: translateY(0); 
+    box-shadow: none;
+}
+input {
+    font-family: Arial, Helvetica, sans-serif;
+    padding: 12px;
+    font-size: 16px;
+}
+.Header{
+    text-align: center;
+    width: 100%;
+}
+body {
+    margin: 0;
+    padding: 0;
+} */
+
+
+
+.SignUpBox {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: radial-gradient(
+    circle at top,
+    #3f3f46,
+    #18181b
+  );
+}
+
+/* Card */
+.SignUpForm {
+  width: 100%;
+  max-width: 380px;
+  padding: 2.5rem;
+  border-radius: 24px;
+
+  background: linear-gradient(
+    135deg,
+    #fb923c 0%,
+    #fef3c7 100%
+  );
+
+  box-shadow:
+    0 20px 25px -5px rgba(0, 0, 0, 0.35),
+    0 10px 10px -5px rgba(0, 0, 0, 0.2);
+
+  display: flex;
+  flex-direction: column;
+}
+
+/* Header */
+.Header {
+  text-align: center;
+  font-size: 1.6rem;
+  font-weight: 600;
+  margin-bottom: 1.5rem;
+  color: #18181b;
+}
+
+/* Inputs container */
+.inputFields {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+/* Inputs */
+input {
+  padding: 12px 14px;
+  font-size: 15px;
+  border-radius: 8px;
+  border: 1px solid #d4d4d8;
+  outline: none;
+  background: #fafafa;
+  transition: all 0.2s ease;
+}
+
+input:focus {
+  border-color: #f97316;
+  box-shadow: 0 0 0 3px rgba(249, 115, 22, 0.25);
+  background: white;
+}
+
+/* Button (reactbits-like interaction) */
+.signUp-button {
+  margin-top: 12px;
+  padding: 12px;
+  font-size: 15px;
+  font-weight: 600;
+  border-radius: 10px;
+  border: none;
+  cursor: pointer;
+
+  background: linear-gradient(
+    135deg,
+    #18181b,
+    #3f3f46
+  );
+  color: white;
+
+  transition:
+    transform 0.15s ease,
+    box-shadow 0.15s ease,
+    background 0.15s ease;
+}
+
+.signUp-button:hover {
+  transform: translateY(-2px) scale(1.01);
+  box-shadow:
+    0 10px 20px rgba(0, 0, 0, 0.35);
+}
+
+.signUp-button:active {
+  transform: translateY(0) scale(0.98);
+  box-shadow: none;
+}
+
+/* Body reset */
+body {
+  margin: 0;
+  padding: 0;
+  font-family: Inter, system-ui, sans-serif;
+}
