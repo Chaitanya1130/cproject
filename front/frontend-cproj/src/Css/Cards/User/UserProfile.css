@@ -1,0 +1,69 @@
+body {
+  margin: 0;
+  font-family: "Inter", system-ui, sans-serif;
+  background: linear-gradient(135deg, #36454F, #3f3f46);
+}
+
+.profile {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  color: #f4f4f5;
+  gap: 24px;
+}
+
+/* TYPEWRITER (robust version) */
+.welcome-text {
+  font-size: 3.2rem;
+  font-weight: 700;
+
+  white-space: nowrap;
+  position: relative;
+
+  /* hide text initially */
+  clip-path: inset(0 100% 0 0);
+
+  animation: reveal 2.5s steps(30, end) forwards;
+}
+
+/* Cursor */
+.welcome-text::after {
+  content: "|";
+  margin-left: 6px;
+  animation: blink 0.8s step-end infinite;
+}
+
+/* Stats */
+.stats {
+  font-size: 1.2rem;
+  opacity: 0;
+  animation: fadeIn 1s ease forwards;
+  animation-delay: 2.6s;
+}
+
+/* Animations */
+@keyframes reveal {
+  to {
+    clip-path: inset(0 0 0 0);
+  }
+}
+
+@keyframes blink {
+  50% {
+    opacity: 0;
+  }
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}

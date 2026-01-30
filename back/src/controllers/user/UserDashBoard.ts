@@ -12,7 +12,8 @@ export const UserDashBoard=async(req:Request,res:Response)=>{
         const user = userResult.rows[0];
         const progressQuery = 'SELECT COUNT(*) FROM userprogress WHERE uid = $1 AND status = $2';
         const progressResult = await pool.query(progressQuery, [userid, 'done']);
-
+        const statusQuery=`select count(*) from userprogress where uid=$1 and status=$2`;
+        const statusResult=await pool.query(statusQuery,[userid,'learning']) 
         res.status(200).json({
             user: {
                 id: user.uid,
@@ -20,7 +21,8 @@ export const UserDashBoard=async(req:Request,res:Response)=>{
                 email: user.email
             },
             stats: {
-                completedQuestions: progressResult.rows[0].count
+                completedQuestions: progressResult.rows[0].count,
+                QuestionsInLearning:statusResult.rows[0].count
             }
         });
     } catch (error) {
