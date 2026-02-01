@@ -1,0 +1,852 @@
+[
+  {
+    "qname": "Question",
+    "qpattern": "Sub-topic",
+    "link": "LeetcodeLink"
+  },
+  {
+    "qname": "TwoSum",
+    "qpattern": "Hashmap",
+    "link": "https://leetcode.com/problems/two-sum/"
+  },
+  {
+    "qname": "BestTimetoBuyandSellStock",
+    "qpattern": "Two-pointer/min-max",
+    "link": "https://leetcode.com/problems/best-time-to-buy-and-sell-stock/"
+  },
+  {
+    "qname": "TwoSumII(sortedinput)",
+    "qpattern": "Two-pointer",
+    "link": "https://leetcode.com/problems/two-sum-ii-input-array-is-sorted/"
+  },
+  {
+    "qname": "ContainsDuplicate",
+    "qpattern": "Hashmap",
+    "link": "https://leetcode.com/problems/contains-duplicate/"
+  },
+  {
+    "qname": "MaximumSubarray",
+    "qpattern": "Kadane'sAlgorithm",
+    "link": "https://leetcode.com/problems/maximum-subarray/"
+  },
+  {
+    "qname": "3Sum",
+    "qpattern": "Two-pointer",
+    "link": "https://leetcode.com/problems/3sum/"
+  },
+  {
+    "qname": "ProductofArrayExceptSelf",
+    "qpattern": "Logical",
+    "link": "https://leetcode.com/problems/product-of-array-except-self/"
+  },
+  {
+    "qname": "ContainerWithMostWater",
+    "qpattern": "Two-pointer",
+    "link": "https://leetcode.com/problems/container-with-most-water/"
+  },
+  {
+    "qname": "SubarraySumEqualsK",
+    "qpattern": "Runningsum",
+    "link": "https://leetcode.com/problems/subarray-sum-equals-k/"
+  },
+  {
+    "qname": "LongestsubarraywithsumequalsK",
+    "qpattern": "Runningsum",
+    "link": "https://practice.geeksforgeeks.org/problems/longest-sub-array-with-sum-k0809/1/"
+  },
+  {
+    "qname": "MinimumSizeSubarraySum",
+    "qpattern": "Runningsum+pointer",
+    "link": "https://leetcode.com/problems/minimum-size-subarray-sum/"
+  },
+  {
+    "qname": "K-diffPairsinanArray",
+    "qpattern": "Hashmap",
+    "link": "https://leetcode.com/problems/k-diff-pairs-in-an-array/"
+  },
+  {
+    "qname": "",
+    "qpattern": "MaximumLengthofRepeatedSubarray",
+    "link": "https://leetcode.com/problems/maximum-length-of-repeated-subarray/"
+  },
+  {
+    "qname": "",
+    "qpattern": "SumofTwoIntegers",
+    "link": "https://leetcode.com/problems/sum-of-two-integers/"
+  },
+  {
+    "qname": "",
+    "qpattern": "Numberof1Bits",
+    "link": "https://leetcode.com/problems/number-of-1-bits/"
+  },
+  {
+    "qname": "",
+    "qpattern": "CountingBits",
+    "link": "https://leetcode.com/problems/counting-bits/"
+  },
+  {
+    "qname": "",
+    "qpattern": "MissingNumber",
+    "link": "https://leetcode.com/problems/missing-number/"
+  },
+  {
+    "qname": "",
+    "qpattern": "ReverseBits",
+    "link": "https://leetcode.com/problems/reverse-bits/"
+  },
+  {
+    "qname": "",
+    "qpattern": "RepeatandMissingNumber",
+    "link": "https://takeuforward.org/data-structure/find-the-repeating-and-missing-numbers/"
+  },
+  {
+    "qname": "",
+    "qpattern": "MergeOverlappingSubintervals",
+    "link": "https://leetcode.com/problems/merge-intervals/"
+  },
+  {
+    "qname": "",
+    "qpattern": "FindtheduplicateinanarrayofN+1integers",
+    "link": "https://leetcode.com/problems/find-the-duplicate-number/"
+  },
+  {
+    "qname": "",
+    "qpattern": "SetMatrixZeros",
+    "link": "https://leetcode.com/problems/set-matrix-zeroes/"
+  },
+  {
+    "qname": "",
+    "qpattern": "PascalTriangle",
+    "link": "https://leetcode.com/problems/pascals-triangle/"
+  },
+  {
+    "qname": "RotateMatrix",
+    "qpattern": "Transposeofmatrix",
+    "link": "https://leetcode.com/problems/rotate-image/"
+  },
+  {
+    "qname": "",
+    "qpattern": "NextPermutation",
+    "link": "https://leetcode.com/problems/next-permutation/"
+  },
+  {
+    "qname": "",
+    "qpattern": "Searchina2Dmatrix",
+    "link": "https://leetcode.com/problems/search-a-2d-matrix/"
+  },
+  {
+    "qname": "InversionofArray",
+    "qpattern": "Merge-Sort",
+    "link": "https://www.geeksforgeeks.org/counting-inversions/"
+  },
+  {
+    "qname": "ReversePairs",
+    "qpattern": "Merge-Sort",
+    "link": "https://leetcode.com/problems/reverse-pairs/"
+  },
+  {
+    "qname": "4Sum",
+    "qpattern": "Sorting+2-pointer",
+    "link": "https://leetcode.com/problems/4sum/"
+  },
+  {
+    "qname": "",
+    "qpattern": "MajorityElement(>N/2times)",
+    "link": "https://leetcode.com/problems/majority-element/"
+  },
+  {
+    "qname": "",
+    "qpattern": "MajorityElement(>N/3times)",
+    "link": "https://leetcode.com/problems/majority-element-ii/"
+  },
+  {
+    "qname": "",
+    "qpattern": "LongestConsecutiveSequence",
+    "link": "https://leetcode.com/problems/longest-consecutive-sequence/"
+  },
+  {
+    "qname": "",
+    "qpattern": "LargestSubarraywith0sum",
+    "link": "https://practice.geeksforgeeks.org/problems/largest-subarray-with-0-sum/"
+  },
+  {
+    "qname": "",
+    "qpattern": "CountnumberofsubarrayswithgivenXOR",
+    "link": "https://bit.ly/3fp24yN"
+  },
+  {
+    "qname": "MaximumProductSubarray",
+    "qpattern": "Kadane'sAlgorithm",
+    "link": "https://leetcode.com/problems/maximum-product-subarray/"
+  },
+  {
+    "qname": "",
+    "qpattern": "PartitiontoKEqualSumSubsets",
+    "link": "https://leetcode.com/problems/partition-to-k-equal-sum-subsets/"
+  },
+  {
+    "qname": "",
+    "qpattern": "SpiralMatrix",
+    "link": "https://leetcode.com/problems/spiral-matrix/"
+  },
+  {
+    "qname": "TrappingRainWater",
+    "qpattern": "Twopointer",
+    "link": "https://leetcode.com/problems/trapping-rain-water"
+  },
+  {
+    "qname": "K\u2019thsmallestelement",
+    "qpattern": "MinHeap",
+    "link": "https://practice.geeksforgeeks.org/problems/kth-smallest-element/0"
+  },
+  {
+    "qname": "",
+    "qpattern": "FirstMissingPositive",
+    "link": "https://leetcode.com/problems/first-missing-positive/"
+  },
+  {
+    "qname": "",
+    "qpattern": "TopKFrequentElements",
+    "link": "https://leetcode.com/problems/top-k-frequent-elements/"
+  },
+  {
+    "qname": "",
+    "qpattern": "VerifyinganAlienDictionary",
+    "link": "https://leetcode.com/problems/verifying-an-alien-dictionary/"
+  },
+  {
+    "qname": "",
+    "qpattern": "Mergetwosortedarrays",
+    "link": "https://practice.geeksforgeeks.org/problems/merge-two-sorted-arrays/0/"
+  },
+  {
+    "qname": "",
+    "qpattern": "Equilibriumpoint",
+    "link": "https://practice.geeksforgeeks.org/problems/equilibrium-point/0"
+  },
+  {
+    "qname": "",
+    "qpattern": "Elementwithleftsidesmallerandrightsidegreater",
+    "link": "https://practice.geeksforgeeks.org/problems/unsorted-array/0"
+  },
+  {
+    "qname": "",
+    "qpattern": "FindPivotIndex",
+    "link": "https://leetcode.com/problems/find-pivot-index/"
+  },
+  {
+    "qname": "",
+    "qpattern": "MedianofTwoSortedArrays",
+    "link": "https://leetcode.com/problems/median-of-two-sorted-arrays/"
+  },
+  {
+    "qname": "",
+    "qpattern": "K-thelementoftwosortedarrays",
+    "link": "https://practice.geeksforgeeks.org/problems/k-th-element-of-two-sorted-array1317/1"
+  },
+  {
+    "qname": "",
+    "qpattern": "Searchina2dMatrix",
+    "link": "https://leetcode.com/problems/search-a-2d-matrix/"
+  },
+  {
+    "qname": "",
+    "qpattern": "FindMinimuminRotatedSortedArray",
+    "link": "https://leetcode.com/problems/find-minimum-in-rotated-sorted-array//"
+  },
+  {
+    "qname": "",
+    "qpattern": "Searchelementinarotatedsortedarray",
+    "link": "https://leetcode.com/problems/search-in-rotated-sorted-array/"
+  },
+  {
+    "qname": "",
+    "qpattern": "LongestPalindromicSubstring",
+    "link": "https://leetcode.com/problems/longest-palindromic-substring/"
+  },
+  {
+    "qname": "",
+    "qpattern": "LongestCommonPrefix",
+    "link": "https://leetcode.com/problems/longest-common-prefix/"
+  },
+  {
+    "qname": "LongestNiceSubstring",
+    "qpattern": "DivideandConquer",
+    "link": "https://leetcode.com/problems/longest-nice-substring"
+  },
+  {
+    "qname": "",
+    "qpattern": "ImplementstrStr()",
+    "link": "https://leetcode.com/problems/implement-strstr/"
+  },
+  {
+    "qname": "FindAllAnagramsinaString",
+    "qpattern": "2-pointer+Hashmap",
+    "link": "https://leetcode.com/problems/find-all-anagrams-in-a-string/"
+  },
+  {
+    "qname": "PermutationinString",
+    "qpattern": "2-pointer+Hashmap",
+    "link": "https://leetcode.com/problems/permutation-in-string/"
+  },
+  {
+    "qname": "LongestSubstringWithoutRepeatingCharacters",
+    "qpattern": "2-pointer+Hashmap",
+    "link": "https://leetcode.com/problems/longest-substring-without-repeating-characters/"
+  },
+  {
+    "qname": "MinimumWindowSubstring",
+    "qpattern": "2-pointer+Hashmap",
+    "link": "https://leetcode.com/problems/minimum-window-substring/"
+  },
+  {
+    "qname": "",
+    "qpattern": "CountandSay",
+    "link": "https://leetcode.com/problems/count-and-say/"
+  },
+  {
+    "qname": "",
+    "qpattern": "CompareVersionNumbers",
+    "link": "https://leetcode.com/problems/compare-version-numbers/"
+  },
+  {
+    "qname": "SubstringwithConcatenationofAllWords",
+    "qpattern": "2-pointer+Hashmap",
+    "link": "https://leetcode.com/problems/substring-with-concatenation-of-all-words/"
+  },
+  {
+    "qname": "",
+    "qpattern": "LongestSubstringwithAtLeastKRepeatingCharacters",
+    "link": "https://leetcode.com/problems/longest-substring-with-at-least-k-repeating-characters/"
+  },
+  {
+    "qname": "",
+    "qpattern": "MaximumNumberofNon-OverlappingSubstrings",
+    "link": "https://leetcode.com/problems/maximum-number-of-non-overlapping-substrings/"
+  },
+  {
+    "qname": "",
+    "qpattern": "MinimumInsertionstoBalanceaParenthesesString",
+    "link": "https://leetcode.com/problems/minimum-insertions-to-balance-a-parentheses-string/"
+  },
+  {
+    "qname": "",
+    "qpattern": "MinimumNumberofSwapstoMaketheStringBalanced",
+    "link": "https://leetcode.com/problems/minimum-number-of-swaps-to-make-the-string-balanced/"
+  },
+  {
+    "qname": "",
+    "qpattern": "MinimumNumberofStepstoMakeTwoStringsAnagram",
+    "link": "https://leetcode.com/problems/minimum-number-of-steps-to-make-two-strings-anagram/"
+  },
+  {
+    "qname": "",
+    "qpattern": "BestTimetoBuyandSellStockII",
+    "link": "https://leetcode.com/problems/best-time-to-buy-and-sell-stock-ii/"
+  },
+  {
+    "qname": "",
+    "qpattern": "Policemencatchthieves",
+    "link": "https://www.geeksforgeeks.org/policemen-catch-thieves/"
+  },
+  {
+    "qname": "",
+    "qpattern": "MinimumPlatforms",
+    "link": "https://practice.geeksforgeeks.org/problems/minimum-platforms/0"
+  },
+  {
+    "qname": "",
+    "qpattern": "JumpGame",
+    "link": "https://leetcode.com/problems/jump-game/"
+  },
+  {
+    "qname": "",
+    "qpattern": "JumpGameII",
+    "link": "https://leetcode.com/problems/jump-game-ii/"
+  },
+  {
+    "qname": "",
+    "qpattern": "GasStation",
+    "link": "https://leetcode.com/problems/gas-station/"
+  },
+  {
+    "qname": "",
+    "qpattern": "Nmeetingsinoneroom",
+    "link": "https://practice.geeksforgeeks.org/problems/n-meetings-in-one-room/0"
+  },
+  {
+    "qname": "FindallSubsets(subsequences)",
+    "qpattern": "Backtracking",
+    "link": "https://leetcode.com/problems/subsets/"
+  },
+  {
+    "qname": "Subsetswithduplicatenumbersininput",
+    "qpattern": "Backtracking",
+    "link": "https://leetcode.com/problems/subsets-ii/"
+  },
+  {
+    "qname": "SubsetSums",
+    "qpattern": "Backtracking",
+    "link": "https://practice.geeksforgeeks.org/problems/subset-sums2234/1#"
+  },
+  {
+    "qname": "CombinationSum",
+    "qpattern": "Backtracking",
+    "link": "https://leetcode.com/problems/combination-sum/"
+  },
+  {
+    "qname": "CombinationSum-II",
+    "qpattern": "Backtracking",
+    "link": "https://leetcode.com/problems/combination-sum-ii/"
+  },
+  {
+    "qname": "CombinationSum-III",
+    "qpattern": "Backtracking",
+    "link": "https://leetcode.com/problems/combination-sum-iii/"
+  },
+  {
+    "qname": "PartitiontoKEqualSumSubsets",
+    "qpattern": "Backtracking",
+    "link": "https://leetcode.com/problems/partition-to-k-equal-sum-subsets/"
+  },
+  {
+    "qname": "PalindromePartitioning",
+    "qpattern": "Backtracking",
+    "link": "https://leetcode.com/problems/palindrome-partitioning/"
+  },
+  {
+    "qname": "",
+    "qpattern": "K-thpermutationSequence",
+    "link": "https://leetcode.com/problems/permutation-sequence/"
+  },
+  {
+    "qname": "Printallpermutationsofastring/array",
+    "qpattern": "Backtracking",
+    "link": "https://leetcode.com/problems/permutations/"
+  },
+  {
+    "qname": "N-Queens",
+    "qpattern": "Backtracking",
+    "link": "https://leetcode.com/problems/n-queens/"
+  },
+  {
+    "qname": "SudokuSolver",
+    "qpattern": "Backtracking",
+    "link": "https://leetcode.com/problems/sudoku-solver/"
+  },
+  {
+    "qname": "RatinaMaze",
+    "qpattern": "Backtracking",
+    "link": "https://practice.geeksforgeeks.org/problems/rat-in-a-maze-problem/1"
+  },
+  {
+    "qname": "McoloringProblem",
+    "qpattern": "Backtracking",
+    "link": "https://practice.geeksforgeeks.org/problems/m-coloring-problem-1587115620/1#"
+  },
+  {
+    "qname": "",
+    "qpattern": "CoinChange",
+    "link": "https://leetcode.com/problems/coin-change/"
+  },
+  {
+    "qname": "",
+    "qpattern": "HouseRobber",
+    "link": "https://leetcode.com/problems/house-robber/"
+  },
+  {
+    "qname": "",
+    "qpattern": "PartitionEqualSubsetSum",
+    "link": "https://leetcode.com/problems/partition-equal-subset-sum/"
+  },
+  {
+    "qname": "",
+    "qpattern": "ClimbingStairs",
+    "link": "https://leetcode.com/problems/climbing-stairs/"
+  },
+  {
+    "qname": "",
+    "qpattern": "MinimumPathSum",
+    "link": "https://leetcode.com/problems/minimum-path-sum/"
+  },
+  {
+    "qname": "",
+    "qpattern": "MinimumInsertionStepstoMakeaStringPalindrome",
+    "link": "https://leetcode.com/problems/minimum-insertion-steps-to-make-a-string-palindrome/"
+  },
+  {
+    "qname": "",
+    "qpattern": "LongestCommonSubsequence(LCS)",
+    "link": "https://leetcode.com/problems/longest-common-subsequence/"
+  },
+  {
+    "qname": "",
+    "qpattern": "MinimumInsertions/DeletionstoConvertStringAtoString",
+    "link": "https://practice.geeksforgeeks.org/problems/minimum-number-of-deletions-and-insertions020"
+  },
+  {
+    "qname": "",
+    "qpattern": "LongestCommonSubstring",
+    "link": "https://practice.geeksforgeeks.org/problems/longest-common-substring1452/1/"
+  },
+  {
+    "qname": "",
+    "qpattern": "LongestPalindromicSubsequence",
+    "link": "https://leetcode.com/problems/longest-palindromic-subsequence/"
+  },
+  {
+    "qname": "",
+    "qpattern": "MaximumLengthofRepeatedSubarray",
+    "link": "https://leetcode.com/problems/longest-common-subsequence//"
+  },
+  {
+    "qname": "",
+    "qpattern": "0-1Knapsack",
+    "link": "https://leetcode.com/problems/ones-and-zeroes/"
+  },
+  {
+    "qname": "",
+    "qpattern": "WordBreak",
+    "link": "https://leetcode.com/problems/word-break/"
+  },
+  {
+    "qname": "IterativeInorderTraversal",
+    "qpattern": "BinaryTree",
+    "link": "https://leetcode.com/problems/binary-tree-inorder-traversal/"
+  },
+  {
+    "qname": "IterativePreorderTraversal",
+    "qpattern": "BinaryTree",
+    "link": "https://leetcode.com/problems/binary-tree-preorder-traversal/"
+  },
+  {
+    "qname": "IterativePostrderTraversal",
+    "qpattern": "BinaryTree",
+    "link": "https://leetcode.com/problems/binary-tree-postorder-traversal/"
+  },
+  {
+    "qname": "MaximumDepthinBinaryTree",
+    "qpattern": "BinaryTree",
+    "link": "https://leetcode.com/problems/maximum-depth-of-binary-tree/"
+  },
+  {
+    "qname": "CheckiftheBinarytreeisheight-balancedornot",
+    "qpattern": "BinaryTree",
+    "link": "https://leetcode.com/problems/balanced-binary-tree/"
+  },
+  {
+    "qname": "DiameterofBinaryTree",
+    "qpattern": "BinaryTree",
+    "link": "https://leetcode.com/problems/diameter-of-binary-tree/"
+  },
+  {
+    "qname": "MaximumpathsuminBinaryTree",
+    "qpattern": "BinaryTree",
+    "link": "https://leetcode.com/problems/binary-tree-maximum-path-sum/"
+  },
+  {
+    "qname": "Checkiftwotreesareidenticalornot",
+    "qpattern": "BinaryTree",
+    "link": "https://leetcode.com/problems/same-tree/"
+  },
+  {
+    "qname": "ZigZagTraversalofBinaryTree",
+    "qpattern": "BinaryTree",
+    "link": "https://leetcode.com/problems/binary-tree-zigzag-level-order-traversal/"
+  },
+  {
+    "qname": "BoundaryTraversalofBinaryTree",
+    "qpattern": "BinaryTree",
+    "link": "https://leetcode.com/problems/boundary-of-binary-tree/#"
+  },
+  {
+    "qname": "MaxwidthofaBinaryTree",
+    "qpattern": "BinaryTree",
+    "link": "https://leetcode.com/problems/maximum-width-of-binary-tree/"
+  },
+  {
+    "qname": "SumRoottoLeafNumbers",
+    "qpattern": "BinaryTree",
+    "link": "https://leetcode.com/problems/sum-root-to-leaf-numbers/"
+  },
+  {
+    "qname": "LeftViewOfBinaryTree",
+    "qpattern": "BinaryTree",
+    "link": "https://practice.geeksforgeeks.org/problems/left-view-of-binary-tree/1"
+  },
+  {
+    "qname": "RightViewOfBinaryTree",
+    "qpattern": "BinaryTree",
+    "link": "https://leetcode.com/problems/binary-tree-right-side-view/"
+  },
+  {
+    "qname": "Verticalordertraversal",
+    "qpattern": "BinaryTree",
+    "link": "https://leetcode.com/problems/vertical-order-traversal-of-a-binary-tree/"
+  },
+  {
+    "qname": "BottomViewofBinaryTree",
+    "qpattern": "BinaryTree",
+    "link": "https://practice.geeksforgeeks.org/problems/bottom-view-of-binary-tree/1"
+  },
+  {
+    "qname": "TopViewofBinaryTree",
+    "qpattern": "BinaryTree",
+    "link": "https://practice.geeksforgeeks.org/problems/top-view-of-binary-tree/1"
+  },
+  {
+    "qname": "SymmetricBinaryTree",
+    "qpattern": "BinaryTree",
+    "link": "https://leetcode.com/problems/symmetric-tree/"
+  },
+  {
+    "qname": "LeastCommonAncestorinBinaryTree",
+    "qpattern": "BinaryTree",
+    "link": "https://leetcode.com/problems/lowest-common-ancestor-of-a-binary-tree/"
+  },
+  {
+    "qname": "PopulatingNextRightPointersinEachNode",
+    "qpattern": "BinaryTree",
+    "link": "https://leetcode.com/problems/populating-next-right-pointers-in-each-node/"
+  },
+  {
+    "qname": "AllNodesDistanceKinBinaryTree",
+    "qpattern": "BinaryTree",
+    "link": "https://leetcode.com/problems/all-nodes-distance-k-in-binary-tree/"
+  },
+  {
+    "qname": "MinimumtimetakentoBURNtheBinaryTreefromaNode",
+    "qpattern": "BinaryTree",
+    "link": "https://www.youtube.com/watch?v=2r5wLmQfD6g&list=PLgUwDviBIf0q8Hkd7bK2Bpryj2xVJk8"
+  },
+  {
+    "qname": "SerializeandDeserializeaBinaryTree",
+    "qpattern": "BinaryTree",
+    "link": "https://leetcode.com/problems/serialize-and-deserialize-binary-tree/"
+  },
+  {
+    "qname": "FlattenBinaryTreetoLinkedList",
+    "qpattern": "BinaryTree",
+    "link": "https://leetcode.com/problems/flatten-binary-tree-to-linked-list/"
+  },
+  {
+    "qname": "FindK-thsmallest/largestelementinBST",
+    "qpattern": "BinarySearchTree",
+    "link": "https://leetcode.com/problems/kth-smallest-element-in-a-bst/"
+  },
+  {
+    "qname": "CheckTreeisaBTisBSTornot",
+    "qpattern": "BinarySearchTree",
+    "link": "https://leetcode.com/problems/validate-binary-search-tree/"
+  },
+  {
+    "qname": "FindLCAoftwonodesinBST",
+    "qpattern": "BinarySearchTree",
+    "link": "https://leetcode.com/problems/lowest-common-ancestor-of-a-binary-search-tree/"
+  },
+  {
+    "qname": "TwosuminBST",
+    "qpattern": "BinarySearchTree",
+    "link": "https://leetcode.com/problems/two-sum-iv-input-is-a-bst/"
+  },
+  {
+    "qname": "BSTiterator",
+    "qpattern": "BinarySearchTree",
+    "link": "https://leetcode.com/problems/binary-search-tree-iterator/"
+  },
+  {
+    "qname": "LargestBSTinaBinaryTree",
+    "qpattern": "BinarySearchTree",
+    "link": "https://leetcode.com/problems/maximum-sum-bst-in-binary-tree/"
+  },
+  {
+    "qname": "WordLadder",
+    "qpattern": "BFS",
+    "link": "https://leetcode.com/problems/word-ladder/"
+  },
+  {
+    "qname": "AlienDictionary",
+    "qpattern": "TopologicalSort",
+    "link": "https://practice.geeksforgeeks.org/problems/alien-dictionary/1"
+  },
+  {
+    "qname": "NumberofIslands",
+    "qpattern": "DFS",
+    "link": "https://leetcode.com/problems/number-of-islands"
+  },
+  {
+    "qname": "FindWordinGrid",
+    "qpattern": "DFS",
+    "link": "https://leetcode.com/problems/word-search"
+  },
+  {
+    "qname": "Dijkstra'sAlgorithm(ShortestPathtoeveryVertex)",
+    "qpattern": "BFS",
+    "link": "https://practice.geeksforgeeks.org/problems/implementing-dijkstra-set-1-adjacency-matrix/1#"
+  },
+  {
+    "qname": "FloodFillAlgorithm",
+    "qpattern": "DFS",
+    "link": "https://leetcode.com/problems/flood-fill/"
+  },
+  {
+    "qname": "RottingOranges",
+    "qpattern": "BFS",
+    "link": "https://leetcode.com/problems/rotting-oranges"
+  },
+  {
+    "qname": "BreadthFirstSearch",
+    "qpattern": "BFS",
+    "link": "https://practice.geeksforgeeks.org/problems/bfs-traversal-of-graph/1"
+  },
+  {
+    "qname": "DepthFirstSearch",
+    "qpattern": "DFS",
+    "link": "https://practice.geeksforgeeks.org/problems/depth-first-traversal-for-a-graph/1"
+  },
+  {
+    "qname": "DetectAcycleinUndirectedGraphusingBFS/DFS",
+    "qpattern": "BFS/DFS",
+    "link": "https://leetcode.com/problems/course-schedule/"
+  },
+  {
+    "qname": "DetectAcycleinaDirectedGraphusingDFS",
+    "qpattern": "DFS",
+    "link": "https://www.youtube.com/watch?v=uzVUw90ZFIg&list=PLgUwDviBIf0rGEWe64KWas0Nryn7SC"
+  },
+  {
+    "qname": "ShortestPathinDirectedAcyclicGraph(DAG)",
+    "qpattern": "BFS",
+    "link": "https://www.youtube.com/watch?v=CrxG4WJotgg&list=PLgUwDviBIf0rGEWe64KWas0Nryn7SC"
+  },
+  {
+    "qname": "TopologicalSort(DFS)",
+    "qpattern": "DFS",
+    "link": "https://www.youtube.com/watch?v=Yh6EFazXipA&list=PLgUwDviBIf0rGEWe64KWas0Nryn7SCR"
+  },
+  {
+    "qname": "CloneaGraph",
+    "qpattern": "DFS",
+    "link": "https://leetcode.com/problems/clone-graph/"
+  },
+  {
+    "qname": "NumberofConnectedComponents",
+    "qpattern": "BFS/DFS",
+    "link": "https://leetcode.com/problems/number-of-connected-components-in-an-undirected-graph/"
+  },
+  {
+    "qname": "LRUCache",
+    "qpattern": "DoublyLinkedList",
+    "link": "https://leetcode.com/problems/lru-cache"
+  },
+  {
+    "qname": "Firstnon-repeatingcharacterinastream",
+    "qpattern": "DoublyLinkedList",
+    "link": "https://practice.geeksforgeeks.org/problems/first-non-repeating-character-in-a-stream/0"
+  },
+  {
+    "qname": "",
+    "qpattern": "ReverseaLinkedList",
+    "link": "https://leetcode.com/problems/reverse-linked-list/"
+  },
+  {
+    "qname": "",
+    "qpattern": "RotateaLinkedList",
+    "link": "https://leetcode.com/problems/rotate-list/"
+  },
+  {
+    "qname": "",
+    "qpattern": "FindthemiddleofLinkedList",
+    "link": "https://leetcode.com/problems/middle-of-the-linked-list"
+  },
+  {
+    "qname": "",
+    "qpattern": "ReverseaLinkedListingroupsofsizek",
+    "link": "https://leetcode.com/problems/reverse-nodes-in-k-group/"
+  },
+  {
+    "qname": "",
+    "qpattern": "DetectacycleinLinkedList",
+    "link": "https://leetcode.com/problems/linked-list-cycle"
+  },
+  {
+    "qname": "",
+    "qpattern": "PalindromeLinkedList",
+    "link": "https://leetcode.com/problems/palindrome-linked-list"
+  },
+  {
+    "qname": "",
+    "qpattern": "FindthestartingpointoftheLoopofLinkedList",
+    "link": "https://leetcode.com/problems/linked-list-cycle-ii/"
+  },
+  {
+    "qname": "",
+    "qpattern": "RemoveloopinLinkedList",
+    "link": "https://practice.geeksforgeeks.org/problems/remove-loop-in-linked-list/1"
+  },
+  {
+    "qname": "",
+    "qpattern": "AddtwonumbersasLinkedList",
+    "link": "https://leetcode.com/problems/add-two-numbers/"
+  },
+  {
+    "qname": "",
+    "qpattern": "MergetwosortedLinkedList",
+    "link": "https://leetcode.com/problems/merge-two-sorted-lists/"
+  },
+  {
+    "qname": "",
+    "qpattern": "FlatteningofaLinkedList",
+    "link": "https://practice.geeksforgeeks.org/problems/flattening-a-linked-list/1"
+  },
+  {
+    "qname": "",
+    "qpattern": "Checkforbalancedparentheses",
+    "link": "https://leetcode.com/problems/valid-parentheses/"
+  },
+  {
+    "qname": "",
+    "qpattern": "NextGreaterElement",
+    "link": "https://leetcode.com/problems/next-greater-element-i/"
+  },
+  {
+    "qname": "",
+    "qpattern": "ImplementMinStack",
+    "link": "https://leetcode.com/problems/min-stack/"
+  },
+  {
+    "qname": "",
+    "qpattern": "SlidingWindowmaximum",
+    "link": "https://leetcode.com/problems/sliding-window-maximum/"
+  },
+  {
+    "qname": "",
+    "qpattern": "Largestrectangleinahistogram",
+    "link": "https://leetcode.com/problems/largest-rectangle-in-histogram/"
+  },
+  {
+    "qname": "",
+    "qpattern": "KthLargestElement",
+    "link": "https://leetcode.com/problems/kth-largest-element-in-an-array/"
+  },
+  {
+    "qname": "",
+    "qpattern": "FindMedianfromDataStream",
+    "link": "https://leetcode.com/problems/find-median-from-data-stream/"
+  },
+  {
+    "qname": "",
+    "qpattern": "MergeKsortedarrays",
+    "link": "https://leetcode.com/problems/merge-k-sorted-lists/"
+  },
+  {
+    "qname": "",
+    "qpattern": "Kmostfrequentelements",
+    "link": "https://leetcode.com/problems/top-k-frequent-elements/"
+  },
+  {
+    "qname": "",
+    "qpattern": "KClosestPointstoOrigin",
+    "link": "https://leetcode.com/problems/k-closest-points-to-origin/"
+  }
+]

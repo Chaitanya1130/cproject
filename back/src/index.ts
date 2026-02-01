@@ -5,6 +5,7 @@ import {initDB} from './dbSchema/intializeDB.js';
 import UserRouter from './routes/user/UserRoutes.js'
 import progressRoutes from "./routes/progress/UserProgress.js";
 import TotalRoutes from "./routes/progress/UserTotal.js";
+import QuesRouter from './routes/questions/QuesRoutes.js'
 app.use(express.json());
 app.use(cors()); 
 initDB();
@@ -16,6 +17,7 @@ app.use('/users',UserRouter);
 
 app.use("/progress", progressRoutes);
 app.use("/total",TotalRoutes);
+app.use("/questions",QuesRouter);
 
 app.listen(8000,()=>{
     console.log("Backend server has started, nice ")
