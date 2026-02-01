@@ -20,7 +20,7 @@ export const UserLogin=async(req:Request,res:Response)=>{
             return res.status(401).json({ message: "Invalid Email or Password" });
         }
         const token = jwt.sign(
-            { userId: user.uid }, 
+            { userId: user.id }, 
             process.env.JWT_SECRET as string,
         );
         res.json({

@@ -3,85 +3,119 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  padding-bottom: 100px;
+  padding: 0 20px 100px 20px;
+  width: 100%;
+  max-width: 1000px;
+  margin-left: auto;
+  margin-right: auto;
 }
 
 .sectionTitle {
-  font-size: 1.6rem;
-  margin-bottom: 15px;
+  font-size: 2rem;
+  margin-bottom: 30px;
   color: #f4f4f5;
-}
-
-.quesTable {
-  width: 100%;
-  max-width: 100%;
-  background: rgba(255, 255, 255, 0.08);
-  border-radius: 12px;
-  overflow: hidden;
-  backdrop-filter: blur(6px);
-  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.25);
-
-}
-
-.quesRow {
-  display: grid;
-  grid-template-columns: 2.5fr 1.5fr 1fr;
-  align-items: center;
-  gap: 12px;
-  padding: 12px 16px;
-  border-top: 1px solid rgba(255, 255, 255, 0.08);
-  font-size: 0.95rem;
-  align-items: center;
+  text-align: center;
 }
 
 .patternSection {
-  margin-bottom: 30px;
+  margin-bottom: 40px;
   width: 100%;
 }
 
 .patternHeader {
-  color: #38bdf8; /* Your blue accent color */
+  color: #38bdf8;
   border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-  padding-bottom: 5px;
-  margin-bottom: 15px;
+  padding-bottom: 10px;
+  margin-bottom: 20px;
   text-align: left;
   font-size: 1.5rem;
-}
-.quesRow.header {
-  background: rgba(255, 255, 255, 0.12);
   font-weight: 600;
+}
+
+.quesTable {
+  width: 100%;
+  background: rgba(255, 255, 255, 0.05);
+  border-radius: 12px;
+  overflow: hidden;
+  backdrop-filter: blur(8px);
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+/* Shared Grid Definition for alignment */
+.quesRow {
+  display: grid;
+  grid-template-columns: 2fr 1fr 100px 150px;
+  align-items: center;
+  gap: 20px;
+  padding: 14px 20px;
+  border-top: 1px solid rgba(255, 255, 255, 0.05);
+  font-size: 0.95rem;
+  color: #f4f4f5;
+}
+
+.quesRow.header {
+  background: rgba(255, 255, 255, 0.1);
+  font-weight: 700;
   color: #38bdf8;
   border-top: none;
-  /* display: grid; */
-  /* grid-template-columns: 3fr 1fr 1fr; */
-  align-items: center;
+  text-transform: uppercase;
+  font-size: 0.8rem;
+  letter-spacing: 1px;
 }
 
 .problemName {
   font-weight: 500;
-
   word-break: break-word;
-  overflow-wrap: break-word;
-  white-space: normal;
-
-
 }
 
 .pattern {
-  opacity: 0.85;
+  opacity: 0.7;
+  font-style: italic;
 }
 
 .openBtn {
-  padding: 6px 14px;
-  border-radius: 8px;
+  display: inline-block;
+  padding: 6px 16px;
+  border-radius: 6px;
   border: 1px solid #38bdf8;
   color: #38bdf8;
   text-decoration: none;
   font-size: 0.85rem;
-  transition: all 0.25s ease;
+  text-align: center;
+  transition: all 0.2s ease;
 }
 
 .openBtn:hover {
   background: #38bdf8;
-  color: #020617;
+  color: #0f172a;
+  transform: translateY(-1px);
+}
+
+/* Status Select Styling */
+.statusSelect {
+  width: 100%;
+  padding: 6px 10px;
+  border-radius: 6px;
+  background: #1e293b;
+  color: #f4f4f5;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  font-size: 0.85rem;
+  cursor: pointer;
+  outline: none;
+  transition: border-color 0.3s ease;
+}
+
+/* Dynamic Colors based on Value */
+.statusSelect.done { border-color: #22c55e; color: #22c55e; }
+.statusSelect.learning { border-color: #facc15; color: #facc15; }
+.statusSelect.revise { border-color: #f97316; color: #f97316; }
+.statusSelect.not_started { border-color: rgba(255, 255, 255, 0.3); }
+
+@media (max-width: 768px) {
+  .quesRow {
+    grid-template-columns: 1fr auto;
+    gap: 10px;
+  }
+  .patternLabel, .statusLabel { display: none; }
 }

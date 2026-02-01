@@ -7,7 +7,12 @@ import progressRoutes from "./routes/progress/UserProgress.js";
 import TotalRoutes from "./routes/progress/UserTotal.js";
 import QuesRouter from './routes/questions/QuesRoutes.js'
 app.use(express.json());
-app.use(cors()); 
+app.use(cors({
+  origin: "http://localhost:5173"
+}));
+
+app.use(express.json());
+
 initDB();
 
 app.get('/firstCheck',(req,res)=>{

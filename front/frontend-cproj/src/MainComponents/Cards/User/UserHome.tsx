@@ -1,7 +1,8 @@
 import React, { useEffect, useState } from "react";
-import "../../../Css/Cards/User/UserProfile.css"
+import "../../../Css/Cards/User/UserProfile.css";
 import UserQuesinProgress from "./UserQuesinProg";
 import UserDefaultQues from "./UserDefaultQues";
+
 export default function UserHome() {
   const [user, setUser] = useState<any>(null);
   const [showLeft, setShowLeft] = useState(false);
@@ -22,11 +23,20 @@ export default function UserHome() {
     fetchDashboardData();
   }, []);
 
-  if (!user) return <div>Loading...</div>;
+  // Helper to close everything
+  const closeAll = () => {
+    setShowLeft(false);
+    setShowRight(false);
+  };
+
+  if (!user) return <div className="loading">Loading...</div>;
 
   return (
     <div className="dashboard">
-      {/* Top bar */}
+      {/* Background click-catcher to close panels */}
+      {(showLeft || showRight) && <div className="scrim" onClick={closeAll} />}
+
+      {/* ================= TOP BAR ================= */}
       <div className="topBar">
         <button className="panelBtn" onClick={() => setShowLeft(p => !p)}>
           {showLeft ? "Close All" : "All Questions"}
@@ -37,9 +47,8 @@ export default function UserHome() {
         </button>
       </div>
 
-      {/* Main content */}
-<div className={`mainContent ${showLeft || showRight ? "blurred" : ""}`}>
-    
+      {/* ================= MAIN CONTENT ================= */}
+      <div className={`mainContent ${showLeft || showRight ? "blurred" : ""}`}>
         <h1 className="welcome-text">
           Welcome back, {user.user?.name || "User"}
         </h1>
@@ -50,7 +59,7 @@ export default function UserHome() {
         </div>
       </div>
 
-      {/* Panels */}
+      {/* ================= PANELS (FIXED WIDTHS) ================= */}
       {showLeft && (
         <div className="leftPanel">
           <UserDefaultQues />
