@@ -12,6 +12,9 @@ export const UserLogin=async(req:Request,res:Response)=>{
             select * from users where name=$1`;
         const ress=await pool.query(query,[username]);
         const user = ress.rows[0];
+        console.log("Full user object:", user);        
+    console.log("user.id:", user.id);              
+    console.log("All keys:", Object.keys(user));
         if(!user){
             return res.status(400).json({ message: "Invalid Email or Password" });
         }
@@ -20,7 +23,7 @@ export const UserLogin=async(req:Request,res:Response)=>{
             return res.status(401).json({ message: "Invalid Email or Password" });
         }
         const token = jwt.sign(
-            { userId: user.id }, 
+            { userId: user.uid }, 
             process.env.JWT_SECRET as string,
         );
         res.json({
@@ -30,6 +33,7 @@ export const UserLogin=async(req:Request,res:Response)=>{
         });
     }
     catch (error) {
+        console.error("Login error:", error); 
         res.status(500).json({ message: "Server Error" });
     }
 }
