@@ -84,3 +84,22 @@ export const getUserProgress = async (req: Request, res: Response) => {
     res.status(500).json({ message: "Error fetching progress" });
   }
 };
+export const CompletedTopicsNames=async(req:Request,res:Response)=>{
+  try{
+    const uid=(req as any).user.userId;
+    const query=
+    `SELECT DISTINCT qpattern FROM questions EXCEPT SELECT DISTINCT q.qpattern FROM questions q LEFT JOIN userprogress u
+        ON q.qid = u.qid
+      AND u.uid = $1
+      WHERE u.status IS NULL OR u.status != 'done';
+    `;
+    const queryres=await pool.query(query,[uid]);
+    res.json({
+      topics:queryres.rows
+    })
+  }
+  catch(error){
+    console.error("DB Fetch Error:", error);
+    res.status(500).json({ message: "Error fetching progress" });
+  }
+}
