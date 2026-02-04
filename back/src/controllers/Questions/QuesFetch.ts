@@ -84,7 +84,26 @@ export const topic=async(req:Request,res:Response)=>{
     }
     catch(error){
         console.error("Error fetching topics:", error);
-    res.status(500).json({ message: "Server error" });
+        res.status(500).json({ message: "Server error" });
     }
     
+}
+
+export const RevisionQues=async(req:Request,res:Response)=>{
+    try{
+        const uid=(req as any).user.userId;
+        const query=
+        `select * from questions q join userprogress u on q.qid=u.qid where uid=$1
+            and q.qname is not null and ( u.status ='learning' or u.status='revise') order by q.qname
+        `;
+        const queryRes=await pool.query(query,[uid]);
+        res.json({
+            revisionQues:queryRes.rows
+        })
+    }
+    catch(error){
+        console.error("Error fetching topics:", error);
+        res.status(500).json({ message: "Server error" });
+
+    }
 }

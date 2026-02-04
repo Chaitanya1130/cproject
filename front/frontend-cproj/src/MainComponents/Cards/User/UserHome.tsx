@@ -5,21 +5,65 @@ import UserDefaultQues from "./UserDefaultQues";
 import CompletedQues from "./CompletedQues";
 import StatusSelector from "./StatusSelector";
 
+type RevisionQuestion = {
+  qid: number;
+  qname: string;
+  qpattern: string;
+  status: "learning" | "revise";
+  link?: string;
+};
+
 export default function UserHome() {
   const [user, setUser] = useState<any>(null);
   const [showLeft, setShowLeft] = useState(false);
   const [showRight, setShowRight] = useState(false);
 
+  // Scroll state for hiding/showing top bar
+  const [showTopBar, setShowTopBar] = useState(true);
+  const [lastScrollY, setLastScrollY] = useState(0);
+
   // refresh signal
   const [refreshTrigger, setRefreshTrigger] = useState(0);
 
   // daily practice
-  const [practiceTopic, setPracticeTopic] = useState("");
+  const [practiceTopic, setPracticeTopic] = useState<string>("");
   const [todayQuestion, setTodayQuestion] = useState<any>(null);
   const [todayStatus, setTodayStatus] = useState("learning");
 
   // dropdown topics
   const [availableTopics, setAvailableTopics] = useState<string[]>([]);
+  
+  // revision data
+  const [revData, setRevData] = useState<RevisionQuestion[]>([]);
+  
+  // rev todo collapse/nocollapse
+  const [showRev, setShowRev] = useState(false);
+
+  /* ---------------- SCROLL HANDLER ---------------- */
+  useEffect(() => {
+    const handleScroll = () => {
+      const currentScrollY = window.scrollY;
+
+      if (currentScrollY < 100) {
+        // Near top - always show
+        setShowTopBar(true);
+      } else if (currentScrollY > lastScrollY) {
+        // Scrolling down - hide
+        setShowTopBar(false);
+      } else {
+        // Scrolling up - show
+        setShowTopBar(true);
+      }
+
+      setLastScrollY(currentScrollY);
+    };
+
+    window.addEventListener("scroll", handleScroll, { passive: true });
+
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+    };
+  }, [lastScrollY]);
 
   /* ---------------- FETCH TOPICS ---------------- */
   useEffect(() => {
@@ -32,7 +76,6 @@ export default function UserHome() {
 
         if (resp.ok) {
           const data = await resp.json();
-          console.log("📚 Topics data:", data);
           setAvailableTopics(data.topics || []);
         }
       } catch (err) {
@@ -43,7 +86,7 @@ export default function UserHome() {
     fetchTopics();
   }, []);
 
-  /* ---------------- DASHBOARD DATA ---------------- */
+  /* ---------------- FETCH DASHBOARD ---------------- */
   const fetchDashboardData = async () => {
     try {
       const token = localStorage.getItem("token");
@@ -51,7 +94,8 @@ export default function UserHome() {
         headers: { Authorization: `Bearer ${token}` },
       });
       if (resp.ok) {
-        setUser(await resp.json());
+        const data = await resp.json();
+        setUser(data);
       }
     } catch (err) {
       console.error("Failed to fetch dashboard data", err);
@@ -60,29 +104,44 @@ export default function UserHome() {
 
   useEffect(() => {
     fetchDashboardData();
-  }, []);
+    handleRevData();
+  }, [refreshTrigger]);
 
+  /* ---------------- UI HELPERS ---------------- */
   const closeAll = () => {
     setShowLeft(false);
     setShowRight(false);
   };
 
-  /* ---------------- STATUS CHANGE SIGNAL ---------------- */
+  /* ---------------- STATUS CHANGE ---------------- */
   const handleStatusChange = async () => {
-    console.log("🔄 Status changed, refreshing dashboard...");
     await fetchDashboardData();
-    
-    // Wait for database sync
-    await new Promise(resolve => setTimeout(resolve, 300));
-    
+    await new Promise((resolve) => setTimeout(resolve, 300));
     setRefreshTrigger((prev) => prev + 1);
   };
 
-  /* ---------------- TODAY'S QUESTION STATUS CHANGE ---------------- */
   const handleTodayStatusChange = async (newStatus: string) => {
-    console.log("📝 Today's question status changing to:", newStatus);
     setTodayStatus(newStatus);
     await handleStatusChange();
+  };
+
+  const handleRevData = async () => {
+    try {
+      const token = localStorage.getItem("token");
+      const resp = await fetch("http://localhost:8000/questions/revision", {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      });
+      if (!resp.ok) {
+        throw new Error("Failed to fetch revision data");
+      }
+      const data = await resp.json();
+      setRevData(data.revisionQues);
+    } catch (err) {
+      console.error("Failed to get revision data", err);
+      setRevData([]);
+    }
   };
 
   /* ---------------- START PRACTICE ---------------- */
@@ -101,30 +160,13 @@ export default function UserHome() {
 
       if (resp.ok) {
         const data = await resp.json();
-        console.log("🎯 Received question data:", data);
-        
-        // CRITICAL: Log to see what fields are available
-        console.log("Question object:", data.question);
-        console.log("qid:", data.question?.qid);
-        console.log("id:", data.question?.id);
-        
-        // Check all possible qid field names
         const question = data.question;
-        const questionId = question.qid || question.id || question.question_id;
-        
-        if (!questionId) {
-          console.error("❌ No qid found in question object!", question);
-          alert("Error: Question ID not found. Please check backend response.");
-          return;
-        }
-        
-        // Ensure qid is set correctly
+
         const normalizedQuestion = {
           ...question,
-          qid: questionId  // Make sure qid exists
+          qid: question.qid,
         };
-        
-        console.log("✅ Normalized question:", normalizedQuestion);
+
         setTodayQuestion(normalizedQuestion);
         setTodayStatus("learning");
       } else {
@@ -141,8 +183,8 @@ export default function UserHome() {
     <div className="dashboard">
       {(showLeft || showRight) && <div className="scrim" onClick={closeAll} />}
 
-      {/* ---------------- TOP BAR ---------------- */}
-      <div className="topBar">
+      {/* ---------------- TOP BAR (Scroll-aware) ---------------- */}
+      <div className={`topBar ${showTopBar ? "visible" : "hidden"}`}>
         <button className="panelBtn" onClick={() => setShowLeft((p) => !p)}>
           {showLeft ? "X" : "All Questions"}
         </button>
@@ -158,16 +200,19 @@ export default function UserHome() {
         </h1>
 
         <div className="stats">
-          <h2>Completed: {user.stats?.completedQuestions ?? 0}</h2>
+          <h2>
+            Completed Total Number of Ques:{" "}
+            {user.stats?.completedQuestions ?? 0}
+          </h2>
           <h2>Learning: {user.stats?.QuestionsInLearning ?? 0}</h2>
         </div>
 
-        {/* Completed Topics */}
+        {/* ---------------- COMPLETED QUESTIONS ---------------- */}
         <div className="todaysQues">
           <CompletedQues triggerRefresh={refreshTrigger} />
         </div>
 
-        {/* ---------------- DAILY PRACTICE SELECT ---------------- */}
+        {/* ---------------- DAILY PRACTICE ---------------- */}
         {!todayQuestion && (
           <div className="inputfield">
             <p className="inputLabel">What do you want to practice?</p>
@@ -198,30 +243,91 @@ export default function UserHome() {
 
         {/* ---------------- TODAY'S QUESTION ---------------- */}
         {todayQuestion && (
-          <div className="todayQuestionCard">
-            <h3>Today's Question</h3>
+          <div className="todayQuestionWrapper">
+            <div className="todayQuestionCard">
+              <h3>Today's Question</h3>
 
-            <a
-              href={todayQuestion.link}
-              target="_blank"
-              rel="noreferrer"
-              className="openBtn"
-            >
-              {todayQuestion.qname}
-            </a>
+              <table className="todayQuestionTable">
+                <thead>
+                  <tr>
+                    <th>Question</th>
+                    <th>Status</th>
+                  </tr>
+                </thead>
 
-            {/* Debug: Show qid */}
-            <p style={{ fontSize: '0.8rem', opacity: 0.5, marginTop: '8px' }}>
-            </p>
+                <tbody>
+                  <tr>
+                    <td>
+                      <a
+                        href={todayQuestion.link}
+                        target="_blank"
+                        rel="noreferrer"
+                        className="openBtn"
+                      >
+                        {todayQuestion.qname}
+                      </a>
+                    </td>
 
-            {todayQuestion.qid ? (
-              <StatusSelector
-                qid={todayQuestion.qid}
-                status={todayStatus}
-                onStatusChange={handleTodayStatusChange}
-              />
+                    <td>
+                      {todayQuestion.qid ? (
+                        <StatusSelector
+                          qid={todayQuestion.qid}
+                          status={todayStatus}
+                          onStatusChange={handleTodayStatusChange}
+                        />
+                      ) : (
+                        <span style={{ color: "red" }}>qid missing</span>
+                      )}
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        )}
+
+        {/* ---------------REVISION TODO------------- */}
+        {!showRev && (
+          <div className="revtodo">
+            <h3>Revision Todo</h3>
+            {revData.length === 0 ? (
+              <p className="emptytext">No revision questions for now!</p>
             ) : (
-              <p style={{ color: 'red' }}>Error: Cannot update status - qid missing</p>
+              <table className="revTable">
+                <thead>
+                  <tr>
+                    <th>Question</th>
+                    <th>Pattern</th>
+                    <th>status</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {revData.map((q) => (
+                    <tr key={q.qid}>
+                      <td>
+                        <a
+                          href={q.link}
+                          target="_blank"
+                          rel="noreferrer"
+                          className="openBtn"
+                        >
+                          {q.qname}
+                        </a>
+                      </td>
+
+                      <td>{q.qpattern}</td>
+
+                      <td>
+                        <StatusSelector
+                          qid={q.qid}
+                          status={q.status}
+                          onStatusChange={handleStatusChange}
+                        />
+                      </td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
             )}
           </div>
         )}

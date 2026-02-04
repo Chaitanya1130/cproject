@@ -1,43 +1,65 @@
 /* ================= PAGE WRAPPER & THEME ================= */
+html{
+  background-color: #0f172a;
+}
 .dashboard {
   min-height: 100vh;
-  background: linear-gradient(135deg, #1e293b, #0f172a);
+  background: linear-gradient(135deg, #0f172a 0%, #1e293b 50%, #0f172a 100%);
   position: relative;
   overflow-x: hidden;
   color: #f4f4f5;
-  font-family: "Inter", system-ui, sans-serif;
+  font-family: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", system-ui, sans-serif;
 }
 
 /* ================= TOP NAVIGATION ================= */
 .topBar {
   position: fixed;
-  top: 25px;
-  left: 30px;
-  right: 30px;
+  top: 20px;
+  left: 0;
+  right: 0;
   display: flex;
-  justify-content: space-between;
-  align-items: center;
+  justify-content: center;
+  gap: 1rem;
   z-index: 200;
+  padding: 0 30px;
 }
 
 .panelBtn {
-  padding: 10px 18px;
-  border-radius: 10px;
-  border: 1px solid #38bdf8;
-  background: rgba(15, 23, 42, 0.85);
+  padding: 12px 24px;
+  border-radius: 12px;
+  border: 1.5px solid rgba(56, 189, 248, 0.3);
+  background: rgba(15, 23, 42, 0.95);
   color: #38bdf8;
   cursor: pointer;
   font-weight: 600;
-  font-size: 0.9rem;
-  backdrop-filter: blur(8px);
-  transition: all 0.2s ease;
-  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+  font-size: 0.95rem;
+  backdrop-filter: blur(12px);
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.4);
+  position: relative;
+  overflow: hidden;
+}
+
+.panelBtn::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(56, 189, 248, 0.2), transparent);
+  transition: left 0.5s;
+}
+
+.panelBtn:hover::before {
+  left: 100%;
 }
 
 .panelBtn:hover {
-  background: #38bdf8;
-  color: #0f172a;
+  background: rgba(56, 189, 248, 0.15);
+  border-color: rgba(56, 189, 248, 0.6);
   transform: translateY(-2px);
+  box-shadow: 0 8px 30px rgba(56, 189, 248, 0.3);
 }
 
 /* ================= SHARED PANEL BASE ================= */
@@ -48,7 +70,7 @@
   height: 100vh;
   max-width: 45vw;
   background: rgba(15, 23, 42, 0.98);
-  backdrop-filter: blur(14px);
+  backdrop-filter: blur(20px);
   padding: 100px 40px 40px;
   overflow-y: auto;
   z-index: 120;
@@ -56,58 +78,57 @@
   box-sizing: border-box;
 }
 
-/* ================= LEFT PANEL ================= */
 .leftPanel {
   left: 0;
   border-right: 1px solid rgba(56, 189, 248, 0.2);
-  box-shadow: 10px 0 30px rgba(0, 0, 0, 0.5);
+  box-shadow: 10px 0 40px rgba(0, 0, 0, 0.6);
   animation: slideInLeft 0.4s ease-out;
 }
 
-/* ================= RIGHT PANEL ================= */
 .rightPanel {
   right: 0;
   border-left: 1px solid rgba(56, 189, 248, 0.2);
-  box-shadow: -10px 0 30px rgba(0, 0, 0, 0.5);
+  box-shadow: -10px 0 40px rgba(0, 0, 0, 0.6);
   animation: slideInRight 0.4s ease-out;
 }
 
-/* ================= MAIN CONTENT & BLUR ================= */
+/* ================= MAIN CONTENT ================= */
 .mainContent {
   min-height: 100vh;
   display: flex;
   flex-direction: column;
   align-items: center;
-  padding: 120px 40px 60px;
-  max-width: 1200px;
+  padding: 100px 40px 80px;
+  max-width: 1400px;
   margin: 0 auto;
   transition: all 0.4s ease;
 }
 
 .mainContent.blurred {
-  filter: blur(10px);
-  opacity: 0.3;
+  filter: blur(12px);
+  opacity: 0.2;
   pointer-events: none;
-  transform: scale(0.98);
+  transform: scale(0.97);
 }
 
 /* ================= WELCOME TEXT ================= */
 .welcome-text {
-  font-size: 2.5rem;
-  font-weight: 700;
+  font-size: 3rem;
+  font-weight: 800;
   margin-bottom: 3rem;
   text-align: center;
-  background: linear-gradient(135deg, #38bdf8, #818cf8);
+  background: linear-gradient(135deg, #38bdf8 0%, #818cf8 50%, #c084fc 100%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
   animation: fadeInDown 0.6s ease-out;
+  letter-spacing: -0.5px;
 }
 
 @keyframes fadeInDown {
   from {
     opacity: 0;
-    transform: translateY(-20px);
+    transform: translateY(-30px);
   }
   to {
     opacity: 1;
@@ -118,18 +139,18 @@
 /* ================= STATS GRID ================= */
 .stats {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
   gap: 2rem;
   width: 100%;
-  max-width: 800px;
-  margin-bottom: 2.5rem;
+  max-width: 900px;
+  margin-bottom: 3rem;
   animation: fadeInUp 0.6s ease-out 0.2s backwards;
 }
 
 @keyframes fadeInUp {
   from {
     opacity: 0;
-    transform: translateY(20px);
+    transform: translateY(30px);
   }
   to {
     opacity: 1;
@@ -138,43 +159,45 @@
 }
 
 .stats h2 {
-  font-size: 1.1rem;
+  font-size: 1rem;
   font-weight: 600;
-  padding: 1.8rem 2rem;
-  background: rgba(25, 40, 70, 0.6);
-  border: 1px solid rgba(56, 189, 248, 0.25);
-  border-radius: 16px;
+  padding: 2rem;
+  background: linear-gradient(135deg, rgba(30, 41, 59, 0.8), rgba(15, 23, 42, 0.9));
+  border: 1.5px solid rgba(56, 189, 248, 0.2);
+  border-radius: 20px;
   backdrop-filter: blur(20px);
   box-shadow: 
-    0 8px 32px rgba(0, 0, 0, 0.3),
+    0 10px 40px rgba(0, 0, 0, 0.4),
     inset 0 1px 0 rgba(255, 255, 255, 0.1);
-  transition: all 0.3s ease;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
   position: relative;
   overflow: hidden;
   text-align: center;
+  color: #e2e8f0;
 }
 
-/* Add icon space before stat text */
+/* Icon container */
 .stats h2::before {
   content: '';
   display: block;
-  margin: 0 auto 0.8rem;
-  width: 48px;
-  height: 48px;
-  border-radius: 12px;
-  background: linear-gradient(135deg, rgba(56, 189, 248, 0.2), rgba(129, 140, 248, 0.2));
-  border: 1px solid rgba(56, 189, 248, 0.3);
+  margin: 0 auto 1rem;
+  width: 56px;
+  height: 56px;
+  border-radius: 14px;
+  background: linear-gradient(135deg, rgba(56, 189, 248, 0.25), rgba(129, 140, 248, 0.25));
+  border: 1.5px solid rgba(56, 189, 248, 0.4);
+  transition: all 0.3s ease;
 }
 
-/* Different icon styles for each stat */
 .stats h2:first-child::before {
   content: '✓';
   display: flex;
   align-items: center;
   justify-content: center;
-  font-size: 24px;
+  font-size: 28px;
   color: #4ade80;
   font-weight: bold;
+  text-shadow: 0 0 20px rgba(74, 222, 128, 0.5);
 }
 
 .stats h2:last-child::before {
@@ -182,18 +205,24 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  font-size: 24px;
+  font-size: 28px;
+  filter: drop-shadow(0 0 10px rgba(56, 189, 248, 0.5));
 }
 
 .stats h2:hover {
-  transform: translateY(-4px);
+  transform: translateY(-6px);
   border-color: rgba(56, 189, 248, 0.5);
   box-shadow: 
-    0 12px 40px rgba(56, 189, 248, 0.2),
+    0 15px 50px rgba(56, 189, 248, 0.25),
     inset 0 1px 0 rgba(255, 255, 255, 0.15);
 }
 
-/* Shimmer effect on stats */
+.stats h2:hover::before {
+  transform: scale(1.1) rotate(5deg);
+  background: linear-gradient(135deg, rgba(56, 189, 248, 0.35), rgba(129, 140, 248, 0.35));
+}
+
+/* Shimmer effect */
 .stats h2::after {
   content: '';
   position: absolute;
@@ -204,11 +233,11 @@
   background: linear-gradient(
     45deg,
     transparent 30%,
-    rgba(255, 255, 255, 0.05) 50%,
+    rgba(255, 255, 255, 0.08) 50%,
     transparent 70%
   );
   transform: rotate(45deg);
-  animation: shimmer 3s infinite;
+  animation: shimmer 4s infinite;
 }
 
 @keyframes shimmer {
@@ -223,13 +252,301 @@
 /* ================= COMPLETED TOPICS CONTAINER ================= */
 .todaysQues {
   width: 100%;
-  max-width: 800px;
+  max-width: 900px;
   animation: fadeInUp 0.6s ease-out 0.4s backwards;
+  margin-bottom: 3rem;
 }
 
-/* Remove conflicting styles - let CompletedQues.css handle it */
-.todaysQues > * {
-  margin: 0;
+/* ================= INPUT FIELD (Practice Selector) ================= */
+.inputfield {
+  width: 100%;
+  max-width: 900px;
+  margin: 3rem auto;
+  padding: 2.5rem;
+  background: linear-gradient(135deg, rgba(30, 41, 59, 0.8), rgba(15, 23, 42, 0.9));
+  border: 1.5px solid rgba(56, 189, 248, 0.2);
+  border-radius: 20px;
+  backdrop-filter: blur(20px);
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.4);
+  animation: fadeInUp 0.6s ease-out 0.6s backwards;
+}
+
+.inputLabel {
+  font-size: 1.2rem;
+  font-weight: 600;
+  color: #e2e8f0;
+  margin-bottom: 1.5rem;
+  text-align: center;
+}
+
+.inputBox {
+  display: flex;
+  gap: 1rem;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.inputBox select {
+  flex: 1;
+  min-width: 250px;
+  padding: 14px 18px;
+  font-size: 1rem;
+  background: rgba(15, 23, 42, 0.8);
+  color: #e2e8f0;
+  border: 1.5px solid rgba(56, 189, 248, 0.3);
+  border-radius: 12px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  backdrop-filter: blur(10px);
+}
+
+.inputBox select:hover {
+  border-color: rgba(56, 189, 248, 0.5);
+  background: rgba(15, 23, 42, 0.95);
+}
+
+.inputBox select:focus {
+  outline: none;
+  border-color: #38bdf8;
+  box-shadow: 0 0 0 3px rgba(56, 189, 248, 0.2);
+}
+
+.inputBox button {
+  padding: 14px 32px;
+  font-size: 1rem;
+  font-weight: 600;
+  background: linear-gradient(135deg, #38bdf8, #818cf8);
+  color: white;
+  border: none;
+  border-radius: 12px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 15px rgba(56, 189, 248, 0.3);
+}
+
+.inputBox button:hover:not(:disabled) {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 25px rgba(56, 189, 248, 0.5);
+}
+
+.inputBox button:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.inputHint {
+  margin-top: 1rem;
+  font-size: 0.9rem;
+  color: #94a3b8;
+  text-align: center;
+  font-style: italic;
+}
+
+/* ================= TODAY'S QUESTION ================= */
+.todayQuestionWrapper {
+  width: 100%;
+  max-width: 900px;
+  margin: 3rem auto;
+  animation: fadeInUp 0.6s ease-out 0.8s backwards;
+}
+
+.todayQuestionCard {
+  background: linear-gradient(135deg, rgba(30, 41, 59, 0.8), rgba(15, 23, 42, 0.9));
+  border: 1.5px solid rgba(56, 189, 248, 0.2);
+  border-radius: 20px;
+  padding: 2.5rem;
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.4);
+  backdrop-filter: blur(20px);
+}
+
+.todayQuestionCard h3 {
+  text-align: center;
+  margin-bottom: 2rem;
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: #e2e8f0;
+  letter-spacing: 0.5px;
+}
+
+.todayQuestionTable {
+  width: 100%;
+  border-collapse: separate;
+  border-spacing: 0;
+  overflow: hidden;
+  border-radius: 12px;
+}
+
+.todayQuestionTable thead th {
+  text-align: left;
+  padding: 16px 20px;
+  font-size: 0.95rem;
+  font-weight: 700;
+  color: #38bdf8;
+  background: rgba(56, 189, 248, 0.1);
+  border-bottom: 2px solid rgba(56, 189, 248, 0.3);
+}
+
+.todayQuestionTable tbody td {
+  padding: 18px 20px;
+  vertical-align: middle;
+  background: rgba(15, 23, 42, 0.5);
+  color: #e2e8f0;
+}
+
+.todayQuestionTable .openBtn {
+  display: inline-block;
+  padding: 10px 20px;
+  border-radius: 10px;
+  background: linear-gradient(135deg, rgba(56, 189, 248, 0.2), rgba(129, 140, 248, 0.2));
+  color: #38bdf8;
+  text-decoration: none;
+  font-weight: 600;
+  transition: all 0.3s ease;
+  border: 1.5px solid rgba(56, 189, 248, 0.3);
+}
+
+.todayQuestionTable .openBtn:hover {
+  background: linear-gradient(135deg, rgba(56, 189, 248, 0.3), rgba(129, 140, 248, 0.3));
+  border-color: rgba(56, 189, 248, 0.5);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 15px rgba(56, 189, 248, 0.3);
+}
+
+/* ================= REVISION TODO ================= */
+.revtodo {
+  width: 100%;
+  max-width: 900px;
+  margin:  auto;
+  background: linear-gradient(135deg, rgba(30, 41, 59, 0.8), rgba(15, 23, 42, 0.9));
+  border: 1.5px solid rgba(168, 85, 247, 0.2);
+  padding: 2.5rem;
+  border-radius: 20px;
+  box-shadow: 0 10px 40px rgba(168, 85, 247, 0.2);
+  backdrop-filter: blur(20px);
+  animation: fadeInUp 0.6s ease-out 1s backwards;
+}
+
+.revtodo h3 {
+  margin-bottom: 2rem;
+  color: #e2e8f0;
+  font-size: 1.5rem;
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.revtodo h3::before {
+  content: '📝';
+  font-size: 1.8rem;
+  filter: drop-shadow(0 0 10px rgba(168, 85, 247, 0.5));
+}
+
+.emptytext {
+  color: #94a3b8;
+  font-size: 1rem;
+  text-align: center;
+  padding: 2rem;
+  font-style: italic;
+}
+
+.revTable {
+  width: 100%;
+  border-collapse: separate;
+  border-spacing: 0;
+  overflow: hidden;
+  border-radius: 12px;
+}
+
+.revTable th {
+  padding: 16px 20px;
+  text-align: left;
+  font-size: 0.95rem;
+  font-weight: 700;
+  color: #a78bfa;
+  background: rgba(168, 85, 247, 0.1);
+  border-bottom: 2px solid rgba(168, 85, 247, 0.3);
+}
+
+.revTable td {
+  padding: 18px 20px;
+  font-size: 0.95rem;
+  color: #e2e8f0;
+}
+
+.revTable tbody tr {
+  background: rgba(15, 23, 42, 0.5);
+  transition: all 0.3s ease;
+}
+
+.revTable tbody tr:hover {
+  background: rgba(168, 85, 247, 0.1);
+  transform: translateX(4px);
+}
+
+.revTable tbody tr:not(:last-child) td {
+  border-bottom: 1px solid rgba(168, 85, 247, 0.1);
+}
+
+.revTable td a.openBtn {
+  color: #a78bfa;
+  font-weight: 600;
+  text-decoration: none;
+  transition: all 0.3s ease;
+  padding: 4px 8px;
+  border-radius: 6px;
+}
+
+.revTable td a.openBtn:hover {
+  color: #c4b5fd;
+  background: rgba(168, 85, 247, 0.1);
+  text-decoration: none;
+}
+
+/* ================= STATUS SELECTOR ================= */
+.statusSelect {
+  padding: 10px 16px;
+  font-size: 0.95rem;
+  font-weight: 600;
+  background: rgba(15, 23, 42, 0.8);
+  color: #e2e8f0;
+  border: 1.5px solid rgba(56, 189, 248, 0.3);
+  border-radius: 10px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  min-width: 150px;
+}
+
+.statusSelect:hover {
+  border-color: rgba(56, 189, 248, 0.5);
+  background: rgba(15, 23, 42, 0.95);
+}
+
+.statusSelect:focus {
+  outline: none;
+  border-color: #38bdf8;
+  box-shadow: 0 0 0 3px rgba(56, 189, 248, 0.2);
+}
+
+/* Status color variants */
+.statusSelect.not_started {
+  border-color: rgba(148, 163, 184, 0.3);
+}
+
+.statusSelect.learning {
+  border-color: rgba(251, 191, 36, 0.4);
+  background: rgba(251, 191, 36, 0.05);
+}
+
+.statusSelect.done {
+  border-color: rgba(74, 222, 128, 0.4);
+  background: rgba(74, 222, 128, 0.05);
+}
+
+.statusSelect.revise {
+  border-color: rgba(168, 85, 247, 0.4);
+  background: rgba(168, 85, 247, 0.05);
 }
 
 /* ================= LOADING STATE ================= */
@@ -240,16 +557,16 @@
   justify-content: center;
   font-size: 1.5rem;
   color: #38bdf8;
-  background: linear-gradient(135deg, #1e293b, #0f172a);
+  background: linear-gradient(135deg, #0f172a, #1e293b);
 }
 
-/* ================= SCRIM (Click catcher) ================= */
+/* ================= SCRIM ================= */
 .scrim {
   position: fixed;
   inset: 0;
-  background: rgba(0, 0, 0, 0.4);
+  background: rgba(0, 0, 0, 0.6);
   z-index: 110;
-  backdrop-filter: blur(4px);
+  backdrop-filter: blur(8px);
   animation: fadeIn 0.3s ease;
   cursor: pointer;
 }
@@ -290,16 +607,13 @@
   }
 
   .welcome-text {
-    font-size: 2rem;
+    font-size: 2.5rem;
   }
 
   .stats {
     gap: 1.5rem;
-  }
-
-  .stats h2 {
-    font-size: 1rem;
-    padding: 1.5rem 1.8rem;
+    grid-template-columns: 1fr;
+    max-width: 600px;
   }
 }
 
@@ -307,41 +621,47 @@
   .leftPanel,
   .rightPanel {
     max-width: 100vw;
-    padding: 80px 20px 20px;
+    padding: 80px 20px 40px;
   }
 
   .topBar {
-    left: 15px;
-    right: 15px;
-    top: 15px;
+    padding: 0 15px;
+    gap: 0.75rem;
   }
 
   .panelBtn {
-    padding: 8px 14px;
+    padding: 10px 18px;
     font-size: 0.85rem;
   }
 
   .mainContent {
-    padding: 100px 20px 40px;
+    padding: 80px 20px 60px;
   }
 
   .welcome-text {
-    font-size: 1.8rem;
+    font-size: 2rem;
     margin-bottom: 2rem;
   }
 
-  .stats {
-    grid-template-columns: 1fr;
-    gap: 1.2rem;
+  .stats h2::before {
+    width: 48px;
+    height: 48px;
+    font-size: 24px;
   }
 
-  .stats h2 {
-    font-size: 0.95rem;
-    padding: 1.3rem 1.5rem;
+  .inputfield,
+  .todayQuestionWrapper,
+  .revtodo {
+    padding: 1.5rem;
   }
 
-  .todaysQues {
-    max-width: 100%;
+  .inputBox {
+    flex-direction: column;
+  }
+
+  .inputBox select,
+  .inputBox button {
+    width: 100%;
   }
 }
 
@@ -350,10 +670,22 @@
     font-size: 1.5rem;
   }
 
-  .stats h2::before {
-    width: 40px;
-    height: 40px;
-    font-size: 20px;
-    margin-bottom: 0.6rem;
+  .stats h2 {
+    padding: 1.5rem;
+    font-size: 0.9rem;
   }
+
+  .todayQuestionTable th,
+  .todayQuestionTable td,
+  .revTable th,
+  .revTable td {
+    padding: 12px;
+    font-size: 0.85rem;
+  }
+}
+/* fix the scroll  */
+.topBar.hidden {
+  transform: translateY(-100px);  /* Slides up */
+  opacity: 0;                     /* Fades out */
+  pointer-events: none;           /* Can't interact */
 }
