@@ -38,7 +38,24 @@ export default function UserHome() {
   
   // rev todo collapse/nocollapse
   const [showRev, setShowRev] = useState(false);
+/* ---------------- MIDNIGHT AUTO-RELOAD ---------------- */
+useEffect(() => {
+  const now = new Date();
+  const midnight = new Date(
+    now.getFullYear(),
+    now.getMonth(),
+    now.getDate() + 1,
+    0, 0, 0, 0
+  );
 
+  const timeUntilMidnight = midnight.getTime() - now.getTime();
+
+  const timer = setTimeout(() => {
+    window.location.reload();
+  }, timeUntilMidnight);
+
+  return () => clearTimeout(timer);
+}, []);
   /* ---------------- SCROLL HANDLER ---------------- */
   useEffect(() => {
     const handleScroll = () => {
@@ -105,6 +122,7 @@ export default function UserHome() {
   useEffect(() => {
     fetchDashboardData();
     handleRevData();
+    fetchTodayQuestion();
   }, [refreshTrigger]);
 
   /* ---------------- UI HELPERS ---------------- */
@@ -167,7 +185,8 @@ export default function UserHome() {
           qid: question.qid,
         };
 
-        setTodayQuestion(normalizedQuestion);
+        // setTodayQuestion(normalizedQuestion);
+        await fetchTodayQuestion();
         setTodayStatus("learning");
       } else {
         console.error("Failed to start practice:", resp.status);
@@ -176,6 +195,22 @@ export default function UserHome() {
       console.error("Failed to start daily practice", err);
     }
   };
+  const fetchTodayQuestion = async () => {
+  try {
+    const token = localStorage.getItem("token");
+    const resp = await fetch("http://localhost:8000/questions/today", {
+      headers: { Authorization: `Bearer ${token}` },
+    });
+
+    if (!resp.ok) throw new Error("Failed to fetch today question");
+
+    const data = await resp.json();
+    setTodayQuestion(data.question); // may be null
+  } catch (err) {
+    console.error("Failed to fetch today question", err);
+    setTodayQuestion(null);
+  }
+};
 
   if (!user) return <div className="loading">Loading...</div>;
 
@@ -186,10 +221,10 @@ export default function UserHome() {
       {/* ---------------- TOP BAR (Scroll-aware) ---------------- */}
       <div className={`topBar ${showTopBar ? "visible" : "hidden"}`}>
         <button className="panelBtn" onClick={() => setShowLeft((p) => !p)}>
-          {showLeft ? "X" : "All Questions"}
+          {showLeft ? "" : "All Questions"}
         </button>
         <button className="panelBtn" onClick={() => setShowRight((p) => !p)}>
-          {showRight ? "X" : "In Progress"}
+          {showRight ? "" : "In Progress"}
         </button>
       </div>
 

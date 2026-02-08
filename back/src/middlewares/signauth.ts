@@ -16,9 +16,10 @@ export const login = async (req: Request, res: Response) => {
 
   const user = result.rows[0];
   const token = jwt.sign(
-    { userId: user.id },               // 👈 ONLY put what you NEED
+    { userId: user.id },            
     process.env.JWT_SECRET as string
   );
+  
 
   res.json({ token });
 };
