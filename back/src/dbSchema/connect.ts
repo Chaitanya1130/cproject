@@ -1,10 +1,13 @@
-// back/src/dbSchema/connect.ts
 import pg from 'pg';
 const { Pool } = pg;
 
 export const pool = new Pool({
-  connectionString: process.env.DATABASE_URL, // It MUST look for this key
+  connectionString: process.env.DATABASE_URL,
   ssl: {
-    rejectUnauthorized: false // This is required for Neon
+    rejectUnauthorized: false
   }
 });
+
+export const connectDB = async () => {
+    return await pool.connect();
+};
