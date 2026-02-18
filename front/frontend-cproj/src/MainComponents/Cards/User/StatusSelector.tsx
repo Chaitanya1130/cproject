@@ -1,17 +1,15 @@
 import React from "react";
-
 interface Props {
   qid: number;
   status: string;
-  onStatusChange: (newStatus: string) => void; // ← Changed to pass the new status
+  onStatusChange: (newStatus: string) => void;
 }
-
 export default function StatusSelector({ qid, status, onStatusChange }: Props) {
   const updateStatus = async (newStatus: string) => {
     try {
       const token = localStorage.getItem("token");
       const resp = await fetch(
-        `http://localhost:8000/progress/status/${qid}`,
+        `https://dsaanalysis-backend.onrender.com/progress/status/${qid}`,
         {
           method: "PATCH",
           headers: {
@@ -21,9 +19,8 @@ export default function StatusSelector({ qid, status, onStatusChange }: Props) {
           body: JSON.stringify({ status: newStatus }),
         }
       );
-
       if (resp.ok) {
-        onStatusChange(newStatus); // ← Pass the new status to parent
+        onStatusChange(newStatus);
       } else {
         console.error("Failed to update status:", resp.status);
       }
@@ -31,10 +28,9 @@ export default function StatusSelector({ qid, status, onStatusChange }: Props) {
       console.error("Error updating status:", err);
     }
   };
-
   return (
     <select
-      className={`statusSelect ${status ?? "not_started"}`} // ← FIXED: Added curly braces
+      className={`statusSelect ${status ?? "not_started"}`}
       value={status ?? "not_started"}
       onChange={(e) => updateStatus(e.target.value)}
     >

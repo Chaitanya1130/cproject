@@ -4,40 +4,7 @@ import UserQuesinProgress from "./UserQuesinProg";
 import UserDefaultQues from "./UserDefaultQues";
 import StatusSelector from "./StatusSelector";
 import AnalyticsPage from "./AnalyticsPage";
-interface InfoModalProps {
-  open: boolean;
-  onClose: () => void;
-}
 
-function PlannerInfoModal({ open, onClose }: InfoModalProps) {
-  if (!open) return null;
-  return (
-      <div className="modal-backdrop" onClick={onClose}>
-        <div className="modal-card info-modal" onClick={(e) => e.stopPropagation()}>
-          <button className="close-x" onClick={onClose}>✕</button>
-          <h2 className="modal-title">Spaced Repetition Engine 🧠</h2>
-          <p className="modal-subtitle">How your revision schedule is calculated:</p>
-          <div className="info-grid">
-            <div className="info-row">
-              <span className="info-label learning">Learning</span>
-              <span className="info-desc">Struggling? Schedules for <strong>Tomorrow</strong>.</span>
-            </div>
-            <div className="info-row">
-              <span className="info-label revise">Revise</span>
-              <span className="info-desc">Getting there! Schedules for <strong>3 Days later</strong>.</span>
-            </div>
-            <div className="info-row">
-              <span className="info-label done">Done</span>
-              <span className="info-desc">Mastered! Progression: <strong>8d → 16d → 60d</strong>.</span>
-            </div>
-          </div>
-          <div className="info-footer">
-            <p>🔥 <strong>Streak:</strong> Solving a question 3x in a row unlocks point bonuses!</p>
-          </div>
-        </div>
-      </div>
-  );
-}
 /* ============================================================
    CONFIRM MODAL
    ============================================================ */
@@ -57,25 +24,25 @@ function ConfirmModal({ open, onConfirm }: ConfirmModalProps) {
   if (!open) return null;
 
   return (
-      <div className="modal-backdrop" onClick={() => onConfirm(false)}>
-        <div className="modal-card" onClick={(e) => e.stopPropagation()}>
-          <div className="modal-icon">🧠</div>
-          <h2 className="modal-title">Independent Solve?</h2>
-          <p className="modal-body">
-            Did you figure this out <strong>without hints or solutions</strong>?
-            <br />
-            Earn <span className="modal-points">+10 points</span> for solving it on your own.
-          </p>
-          <div className="modal-actions">
-            <button className="modal-btn modal-btn-no" onClick={() => onConfirm(false)}>
-              Used hints
-            </button>
-            <button className="modal-btn modal-btn-yes" onClick={() => onConfirm(true)}>
-              Yes, solved it! 🎉
-            </button>
-          </div>
+    <div className="modal-backdrop" onClick={() => onConfirm(false)}>
+      <div className="modal-card" onClick={(e) => e.stopPropagation()}>
+        <div className="modal-icon">🧠</div>
+        <h2 className="modal-title">Independent Solve?</h2>
+        <p className="modal-body">
+          Did you figure this out <strong>without hints or solutions</strong>?
+          <br />
+          Earn <span className="modal-points">+10 points</span> for solving it on your own.
+        </p>
+        <div className="modal-actions">
+          <button className="modal-btn modal-btn-no" onClick={() => onConfirm(false)}>
+            Used hints
+          </button>
+          <button className="modal-btn modal-btn-yes" onClick={() => onConfirm(true)}>
+            Yes, solved it! 🎉
+          </button>
         </div>
       </div>
+    </div>
   );
 }
 
@@ -127,7 +94,7 @@ export default function UserHome() {
   const [revData, setRevData] = useState<RevisionQuestion[]>([]);
   const [modalOpen, setModalOpen] = useState(false);
   const [pendingStatus, setPendingStatus] = useState<PendingStatus | null>(null);
-  const [infoOpen, setInfoOpen] = useState(false);
+
   /* ---------------- MIDNIGHT RELOAD ---------------- */
   useEffect(() => {
     const now = new Date();
@@ -155,10 +122,10 @@ export default function UserHome() {
     const headers = { Authorization: `Bearer ${token}` };
     try {
       const [userResp, topicResp, todayResp, revResp] = await Promise.all([
-        fetch("http://localhost:8000/users/userhome", { headers }),
-        fetch("http://localhost:8000/questions/topics", { headers }),
-        fetch("http://localhost:8000/questions/today", { headers }),
-        fetch("http://localhost:8000/questions/revision", { headers }),
+        fetch("https://dsaanalysis-backend.onrender.com/users/userhome", { headers }),
+        fetch("https://dsaanalysis-backend.onrender.com/questions/topics", { headers }),
+        fetch("https://dsaanalysis-backend.onrender.com/questions/today", { headers }),
+        fetch("https://dsaanalysis-backend.onrender.com/questions/revision", { headers }),
       ]);
       if (userResp.ok) setUser(await userResp.json());
       if (topicResp.ok) {
@@ -189,7 +156,7 @@ export default function UserHome() {
   const submitStatusUpdate = async (qid: number, status: string, solvedIndependently: boolean) => {
     try {
       const token = localStorage.getItem("token");
-      const resp = await fetch("http://localhost:8000/questions/update-status", {
+      const resp = await fetch("https://dsaanalysis-backend.onrender.com/questions/update-status", {
         method: "POST",
         headers: { "Content-Type": "application/json", Authorization: `Bearer ${token}` },
         body: JSON.stringify({ qid, status, solvedIndependently }),
@@ -222,7 +189,7 @@ export default function UserHome() {
     if (!practiceTopic) return;
     try {
       const token = localStorage.getItem("token");
-      const resp = await fetch("http://localhost:8000/questions/start", {
+      const resp = await fetch("https://dsaanalysis-backend.onrender.com/questions/start", {
         method: "POST",
         headers: { "Content-Type": "application/json", Authorization: `Bearer ${token}` },
         body: JSON.stringify({ topic: practiceTopic }),
@@ -246,200 +213,199 @@ export default function UserHome() {
 
   if (!user)
     return (
-        <div className="loading-container">
-          <div className="loading-spinner" />
-          <p>Loading Dashboard...</p>
-        </div>
+      <div className="loading-container">
+        <div className="loading-spinner" />
+        <p>Loading Dashboard...</p>
+      </div>
     );
 
   const learningList = revData.filter((q) => q.status === "learning");
   const reviseList   = revData.filter((q) => q.status === "revise");
 
   return (
+    <div className="dashboard">
+      {/* ---- MODAL ---- */}
+      <ConfirmModal open={modalOpen} onConfirm={handleModalConfirm} />
 
-      <div className="dashboard">
-        {/* ---- MODAL ---- */}
-        <ConfirmModal open={modalOpen} onConfirm={handleModalConfirm} />
-        <PlannerInfoModal open={infoOpen} onClose={() => setInfoOpen(false)} />
-        {/* ---- SCRIM (panels only) ---- */}
-        {(showLeft || showRight) && (
-            <div className="scrim" onClick={() => { setShowLeft(false); setShowRight(false); }} />
-        )}
-        <button className="info-trigger" onClick={() => setInfoOpen(true)} title="How it works">i</button>
-        {/* ---- TOP NAV ---- */}
-        <nav className={`topBar${showTopBar ? "" : " hidden"}`}>
-          <button className={`panelBtn${showLeft ? " active" : ""}`} onClick={openTopics}>
-            {showLeft ? "✕ Close" : "Topics"}
-          </button>
-          <button className={`panelBtn${showRight ? " active" : ""}`} onClick={openProgress}>
-            {showRight ? "✕ Close" : "Progress"}
-          </button>
-          <button className={`panelBtn${showAnalytics ? " active" : ""}`} onClick={openAnalytics}>
-            {showAnalytics ? "✕ Dashboard" : "Analytics"}
-          </button>
-        </nav>
+      {/* ---- SCRIM (panels only) ---- */}
+      {(showLeft || showRight) && (
+        <div className="scrim" onClick={() => { setShowLeft(false); setShowRight(false); }} />
+      )}
 
-        {/* ---- ANALYTICS PAGE (full swap) ---- */}
-        {showAnalytics ? (
-            <AnalyticsPage />
-        ) : (
-            /* ---- MAIN DASHBOARD ---- */
-            <main className={`mainContent${showLeft || showRight ? " blurred" : ""}`}>
+      {/* ---- TOP NAV ---- */}
+      <nav className={`topBar${showTopBar ? "" : " hidden"}`}>
+        <button className={`panelBtn${showLeft ? " active" : ""}`} onClick={openTopics}>
+          {showLeft ? "✕ Close" : "Topics"}
+        </button>
+        <button className={`panelBtn${showRight ? " active" : ""}`} onClick={openProgress}>
+          {showRight ? "✕ Close" : "Progress"}
+        </button>
+        <button className={`panelBtn${showAnalytics ? " active" : ""}`} onClick={openAnalytics}>
+          {showAnalytics ? "✕ Dashboard" : "Analytics"}
+        </button>
+      </nav>
 
-              {/* WELCOME */}
-              <header className="welcome-header">
-                <h1 className="welcome-text">
-                  Welcome back, <span>{user.user?.name}</span>
-                </h1>
-                <p className="welcome-sub">Here is your spaced-repetition plan for today.</p>
-              </header>
+      {/* ---- ANALYTICS PAGE (full swap) ---- */}
+      {showAnalytics ? (
+        <AnalyticsPage />
+      ) : (
+        /* ---- MAIN DASHBOARD ---- */
+        <main className={`mainContent${showLeft || showRight ? " blurred" : ""}`}>
 
-              {/* STATS */}
-              <div className="stats-container">
-                <div className="stat-card">
-                  <span className="stat-icon green">✓</span>
-                  <div className="stat-info">
-                    <span className="stat-label">Total Completed</span>
-                    <span className="stat-value">{user.stats?.completedQuestions ?? 0}</span>
-                  </div>
-                </div>
-                <div className="stat-card">
-                  <span className="stat-icon blue">⟳</span>
-                  <div className="stat-info">
-                    <span className="stat-label">In Learning</span>
-                    <span className="stat-value">{user.stats?.QuestionsInLearning ?? 0}</span>
-                  </div>
-                </div>
+          {/* WELCOME */}
+          <header className="welcome-header">
+            <h1 className="welcome-text">
+              Welcome back, <span>{user.user?.name}</span>
+            </h1>
+            <p className="welcome-sub">Here is your spaced-repetition plan for today.</p>
+          </header>
+
+          {/* STATS */}
+          <div className="stats-container">
+            <div className="stat-card">
+              <span className="stat-icon green">✓</span>
+              <div className="stat-info">
+                <span className="stat-label">Total Completed</span>
+                <span className="stat-value">{user.stats?.completedQuestions ?? 0}</span>
               </div>
+            </div>
+            <div className="stat-card">
+              <span className="stat-icon blue">⟳</span>
+              <div className="stat-info">
+                <span className="stat-label">In Learning</span>
+                <span className="stat-value">{user.stats?.QuestionsInLearning ?? 0}</span>
+              </div>
+            </div>
+          </div>
 
-              {/* ---- TODAY'S TASK ---- */}
-              <section className="dashboard-section">
-                <div className="section-header"><h3>Daily Focus</h3></div>
-                <div className="todayQuestionWrapper card">
-                  {!todayQuestion ? (
-                      <div className="inputfield">
-                        <span className="inputLabel">Assign Today's Question</span>
-                        <div className="inputBox">
-                          <select value={practiceTopic} onChange={(e) => setPracticeTopic(e.target.value)}>
-                            <option value="">Select a Topic</option>
-                            {availableTopics.map((t) => (
-                                <option key={t} value={t}>{t}</option>
-                            ))}
-                          </select>
-                          <button onClick={handleStartPractice} disabled={!practiceTopic} className="btn-primary">
-                            Generate →
-                          </button>
-                        </div>
-                        <p className="inputHint">Pick a pattern you want to master today.</p>
-                      </div>
-                  ) : (
-                      <div className="today-ques-content">
-                        <div className="ques-info-group">
-                          <h3>
-                            {todayQuestion.qname}
-                            {(todayQuestion.success_streak ?? 0) >= 3 && (
-                                <span className="badge-streak">🔥 {todayQuestion.success_streak} Streak</span>
-                            )}
-                          </h3>
-                          <p className="pattern-label">{todayQuestion.qpattern}</p>
-                        </div>
-                        <div className="question-actions">
-                          {todayQuestion.link && (
-                              <a className="openBtn" href={todayQuestion.link} target="_blank" rel="noreferrer">
-                                Solve Now ↗
-                              </a>
-                          )}
+          {/* ---- TODAY'S TASK ---- */}
+          <section className="dashboard-section">
+            <div className="section-header"><h3>Daily Focus</h3></div>
+            <div className="todayQuestionWrapper card">
+              {!todayQuestion ? (
+                <div className="inputfield">
+                  <span className="inputLabel">Assign Today's Question</span>
+                  <div className="inputBox">
+                    <select value={practiceTopic} onChange={(e) => setPracticeTopic(e.target.value)}>
+                      <option value="">Select a Topic</option>
+                      {availableTopics.map((t) => (
+                        <option key={t} value={t}>{t}</option>
+                      ))}
+                    </select>
+                    <button onClick={handleStartPractice} disabled={!practiceTopic} className="btn-primary">
+                      Generate →
+                    </button>
+                  </div>
+                  <p className="inputHint">Pick a pattern you want to master today.</p>
+                </div>
+              ) : (
+                <div className="today-ques-content">
+                  <div className="ques-info-group">
+                    <h3>
+                      {todayQuestion.qname}
+                      {(todayQuestion.success_streak ?? 0) >= 3 && (
+                        <span className="badge-streak">🔥 {todayQuestion.success_streak} Streak</span>
+                      )}
+                    </h3>
+                    <p className="pattern-label">{todayQuestion.qpattern}</p>
+                  </div>
+                  <div className="question-actions">
+                    {todayQuestion.link && (
+                      <a className="openBtn" href={todayQuestion.link} target="_blank" rel="noreferrer">
+                        Solve Now ↗
+                      </a>
+                    )}
+                    <StatusSelector
+                      qid={todayQuestion.qid}
+                      status={todayStatus}
+                      onStatusChange={(s) => handleStatusUpdate(todayQuestion.qid, s)}
+                    />
+                  </div>
+                </div>
+              )}
+            </div>
+          </section>
+
+          {/* ---- DUAL TODO SPLIT ---- */}
+          <section className="dashboard-section">
+            <div className="section-header"><h3>Scheduled Revisions</h3></div>
+            <div className="todo-split">
+
+              {/* LEFT — Learning */}
+              <div className="todo-col card">
+                <div className="todo-col-header">
+                  <span className="todo-col-dot learning-dot" />
+                  <h4>Learning</h4>
+                  <span className="todo-col-count">{learningList.length}</span>
+                </div>
+                {learningList.length === 0 ? (
+                  <p className="emptytext">No active learning questions.</p>
+                ) : (
+                  <div className="rev-list">
+                    {learningList.map((q) => (
+                      <div className="rev-item" key={q.qid}>
+                        <span className="rev-item-name">{q.qname}</span>
+                        <div className="rev-item-right">
+                          {q.link && <a className="iconBtn" href={q.link} target="_blank" rel="noreferrer">↗</a>}
                           <StatusSelector
-                              qid={todayQuestion.qid}
-                              status={todayStatus}
-                              onStatusChange={(s) => handleStatusUpdate(todayQuestion.qid, s)}
+                            qid={q.qid}
+                            status={q.status}
+                            onStatusChange={(s) => handleStatusUpdate(q.qid, s)}
                           />
                         </div>
                       </div>
-                  )}
-                </div>
-              </section>
-
-              {/* ---- DUAL TODO SPLIT ---- */}
-              <section className="dashboard-section">
-                <div className="section-header"><h3>Scheduled Revisions</h3></div>
-                <div className="todo-split">
-
-                  {/* LEFT — Learning */}
-                  <div className="todo-col card">
-                    <div className="todo-col-header">
-                      <span className="todo-col-dot learning-dot" />
-                      <h4>Learning</h4>
-                      <span className="todo-col-count">{learningList.length}</span>
-                    </div>
-                    {learningList.length === 0 ? (
-                        <p className="emptytext">No active learning questions.</p>
-                    ) : (
-                        <div className="rev-list">
-                          {learningList.map((q) => (
-                              <div className="rev-item" key={q.qid}>
-                                <span className="rev-item-name">{q.qname}</span>
-                                <div className="rev-item-right">
-                                  {q.link && <a className="iconBtn" href={q.link} target="_blank" rel="noreferrer">↗</a>}
-                                  <StatusSelector
-                                      qid={q.qid}
-                                      status={q.status}
-                                      onStatusChange={(s) => handleStatusUpdate(q.qid, s)}
-                                  />
-                                </div>
-                              </div>
-                          ))}
-                        </div>
-                    )}
+                    ))}
                   </div>
+                )}
+              </div>
 
-                  <div className="todo-divider" />
+              <div className="todo-divider" />
 
-                  {/* RIGHT — Revision */}
-                  <div className="todo-col card">
-                    <div className="todo-col-header">
-                      <span className="todo-col-dot revise-dot" />
-                      <h4>Revision</h4>
-                      <span className="todo-col-count">{reviseList.length}</span>
-                    </div>
-                    {reviseList.length === 0 ? (
-                        <p className="emptytext">Revision queue is empty!</p>
-                    ) : (
-                        <div className="rev-list">
-                          {reviseList.map((q) => (
-                              <div className="rev-item" key={q.qid}>
-                                <span className="rev-item-name">{q.qname}</span>
-                                <div className="rev-item-right">
-                                  {q.link && <a className="iconBtn" href={q.link} target="_blank" rel="noreferrer">↗</a>}
-                                  <StatusSelector
-                                      qid={q.qid}
-                                      status={q.status}
-                                      onStatusChange={(s) => handleStatusUpdate(q.qid, s)}
-                                  />
-                                </div>
-                              </div>
-                          ))}
-                        </div>
-                    )}
-                  </div>
-
+              {/* RIGHT — Revision */}
+              <div className="todo-col card">
+                <div className="todo-col-header">
+                  <span className="todo-col-dot revise-dot" />
+                  <h4>Revision</h4>
+                  <span className="todo-col-count">{reviseList.length}</span>
                 </div>
-              </section>
+                {reviseList.length === 0 ? (
+                  <p className="emptytext">Revision queue is empty!</p>
+                ) : (
+                  <div className="rev-list">
+                    {reviseList.map((q) => (
+                      <div className="rev-item" key={q.qid}>
+                        <span className="rev-item-name">{q.qname}</span>
+                        <div className="rev-item-right">
+                          {q.link && <a className="iconBtn" href={q.link} target="_blank" rel="noreferrer">↗</a>}
+                          <StatusSelector
+                            qid={q.qid}
+                            status={q.status}
+                            onStatusChange={(s) => handleStatusUpdate(q.qid, s)}
+                          />
+                        </div>
+                      </div>
+                    ))}
+                  </div>
+                )}
+              </div>
 
-            </main>
-        )}
+            </div>
+          </section>
 
-        {/* ---- SIDE PANELS (only shown on dashboard, not analytics) ---- */}
-        {!showAnalytics && (
-            <>
-              <aside className={`leftPanel${showLeft ? " open" : ""}`}>
-                <UserDefaultQues onStatusChange={() => setRefreshTrigger((p) => p + 1)} />
-              </aside>
-              <aside className={`rightPanel${showRight ? " open" : ""}`}>
-                <UserQuesinProgress triggerRefresh={refreshTrigger} />
-              </aside>
-            </>
-        )}
-      </div>
+        </main>
+      )}
+
+      {/* ---- SIDE PANELS (only shown on dashboard, not analytics) ---- */}
+      {!showAnalytics && (
+        <>
+          <aside className={`leftPanel${showLeft ? " open" : ""}`}>
+            <UserDefaultQues onStatusChange={() => setRefreshTrigger((p) => p + 1)} />
+          </aside>
+          <aside className={`rightPanel${showRight ? " open" : ""}`}>
+            <UserQuesinProgress triggerRefresh={refreshTrigger} />
+          </aside>
+        </>
+      )}
+    </div>
   );
 }
