@@ -5,9 +5,9 @@ import jwt from 'jsonwebtoken';
 export const auth = (req: Request, res: Response, next: NextFunction) => {
   const authHeader = req.headers.authorization;
   const token = authHeader && authHeader.split(" ")[1];
-
-  console.log("--- Auth Debug ---");
-  console.log("Token Received:", token ? "YES" : "NO");
+  //
+  // console.log("--- Auth Debug ---");
+  // console.log("Token Received:", token ? "YES" : "NO");
   
   if (!token) {
     console.log("Reason: Missing Token");
@@ -16,7 +16,7 @@ export const auth = (req: Request, res: Response, next: NextFunction) => {
 
   try {
     const decoded = jwt.verify(token, process.env.JWT_SECRET as string) as { userId: number };
-    console.log(decoded);
+    // console.log(decoded);
     console.log("Decoded User ID:", decoded.userId);
     (req as any).user = decoded;
     next();

@@ -1,203 +1,284 @@
-/* .SignUpBox{
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100vh;
+@import url('https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600&display=swap');
 
-    background-color: #f0f2f5;
-    background: linear-gradient(135deg, #454545 0%, #5A5A5A 100%);
+/* ============================================================
+   SHARED AUTH TOKENS
+   ============================================================ */
+:root {
+  --bg-base:      #080c14;
+  --bg-surface:   #0d1525;
+  --bg-raised:    #111d35;
+  --border:       rgba(99,179,237,0.13);
+  --border-hover: rgba(99,179,237,0.35);
+  --accent-blue:  #63b3ed;
+  --accent-violet:#9f7aea;
+  --accent-green: #68d391;
+  --text-primary: #e8edf5;
+  --text-muted:   #6b7fa3;
+  --text-faint:   #3d506e;
 }
-.SignUpForm{
-    background:linear-gradient(100deg,#CC5500 0%, #F5F5DC 100%);
-    padding: 2.5rem;
-    border-radius: 120px;
-    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1);
-    width: 100%;
-    max-width: 400px;
-    display: flex;
-    flex-direction: column;
-}
-.inputFields{
-    padding: 2rem;
 
-    display: flex;
-    flex-direction: column;
-    border: 1px solid black;
-    border-radius: 6px;
-    font-size: 16px;
-    gap: 15px;
-}
-.signUp-button{
-    margin-top: 10px;
-    padding: 12px;
-    background-color: lightgray;
-    color: black;
-    border: none;
-    border-radius: 4px;
-    cursor: inherit;
-    transition: all 0.3s ease;
-}
-.signUp-button:hover {
-    background-color: #555;
-    transform: translateY(-2px); 
-    box-shadow: 0 4px 8px rgba(0,0,0,0.2);
-}
-.signUp-button:active {
-    background-color: #111; 
-    transform: translateY(0); 
-    box-shadow: none;
-}
-input {
-    font-family: Arial, Helvetica, sans-serif;
-    padding: 12px;
-    font-size: 16px;
-}
-.Header{
-    text-align: center;
-    width: 100%;
-}
-body {
-    margin: 0;
-    padding: 0;
-} */
-
-
-
-.SignUpBox {
+/* ============================================================
+   PAGE
+   ============================================================ */
+.auth-page {
   min-height: 100vh;
+  background: var(--bg-base);
+  background-image:
+          radial-gradient(ellipse 70% 50% at 15% 20%, rgba(99,179,237,0.07) 0%, transparent 60%),
+          radial-gradient(ellipse 60% 40% at 85% 80%, rgba(159,122,234,0.07) 0%, transparent 60%);
   display: flex;
   align-items: center;
   justify-content: center;
-  background: radial-gradient(
-    circle at top,
-    #3f3f46,
-    #18181b
-  );
+  padding: 2rem;
+  font-family: "DM Sans", system-ui, sans-serif;
+  position: relative;
+  overflow: hidden;
 }
 
-/* Card */
-.SignUpForm {
+.auth-page::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  background-image:
+          linear-gradient(rgba(99,179,237,0.025) 1px, transparent 1px),
+          linear-gradient(90deg, rgba(99,179,237,0.025) 1px, transparent 1px);
+  background-size: 48px 48px;
+  pointer-events: none;
+}
+
+/* ============================================================
+   CARD
+   ============================================================ */
+.auth-card {
+  position: relative;
+  z-index: 1;
   width: 100%;
-  max-width: 380px;
-  padding: 2.5rem;
+  max-width: 420px;
+  background: rgba(13, 21, 37, 0.97);
+  border: 1px solid var(--border);
   border-radius: 24px;
-
-  background: linear-gradient(
-    135deg,
-    #fb923c 0%,
-    #fef3c7 100%
-  );
-
+  padding: 2.75rem 2.5rem 2.25rem;
   box-shadow:
-    0 20px 25px -5px rgba(0, 0, 0, 0.35),
-    0 10px 10px -5px rgba(0, 0, 0, 0.2);
-
-  display: flex;
-  flex-direction: column;
+          0 0 0 1px rgba(99,179,237,0.04),
+          0 24px 80px rgba(0,0,0,0.6),
+          0 0 60px rgba(99,179,237,0.04);
+  backdrop-filter: blur(20px);
+  animation: authIn 0.45s cubic-bezier(0.34, 1.2, 0.64, 1) both;
 }
 
-/* Header */
-.Header {
+/* top accent line */
+.auth-card::before {
+  content: "";
+  position: absolute;
+  top: 0; left: 10%; right: 10%;
+  height: 1px;
+  background: linear-gradient(90deg,
+  transparent,
+  rgba(99,179,237,0.5) 30%,
+  rgba(159,122,234,0.5) 70%,
+  transparent);
+  border-radius: 1px;
+}
+
+/* ============================================================
+   BRAND ICON
+   ============================================================ */
+.auth-brand {
+  font-size: 2rem;
   text-align: center;
-  font-size: 1.6rem;
-  font-weight: 600;
-  margin-bottom: 1.5rem;
-  color: #18181b;
+  margin-bottom: 1rem;
+  filter: drop-shadow(0 0 14px rgba(99,179,237,0.5));
 }
 
-/* Inputs container */
-.inputFields {
+/* ============================================================
+   HEADING
+   ============================================================ */
+.auth-title {
+  font-family: "Syne", sans-serif;
+  font-size: 1.75rem;
+  font-weight: 800;
+  letter-spacing: -0.03em;
+  color: var(--text-primary);
+  text-align: center;
+  margin-bottom: 0.35rem;
+}
+
+.auth-sub {
+  text-align: center;
+  font-size: 0.88rem;
+  color: var(--text-muted);
+  margin-bottom: 0;
+}
+
+/* ============================================================
+   FORM
+   ============================================================ */
+.auth-form {
   display: flex;
   flex-direction: column;
-  gap: 14px;
+  gap: 1rem;
+  margin-top: 1.75rem;
 }
 
-/* Inputs */
-input {
-  padding: 12px 14px;
-  font-size: 15px;
-  border-radius: 8px;
-  border: 1px solid #d4d4d8;
+.auth-field {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.auth-label {
+  font-size: 0.73rem;
+  font-family: "Syne", sans-serif;
+  font-weight: 700;
+  letter-spacing: 0.09em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+}
+
+.auth-input {
+  width: 100%;
+  padding: 12px 15px;
+  font-size: 0.95rem;
+  font-family: "DM Sans", sans-serif;
+  color: var(--text-primary);
+  background: rgba(8,12,20,0.7);
+  border: 1px solid var(--border);
+  border-radius: 12px;
   outline: none;
-  background: #fafafa;
-  transition: all 0.2s ease;
+  transition: border-color 0.2s, box-shadow 0.2s, background 0.2s;
+  -webkit-appearance: none;
 }
 
-input:focus {
-  border-color: #f97316;
-  box-shadow: 0 0 0 3px rgba(249, 115, 22, 0.25);
-  background: white;
+.auth-input::placeholder {
+  color: var(--text-faint);
+  font-size: 0.9rem;
 }
 
-/* Button (reactbits-like interaction) */
-.signUp-button {
-  margin-top: 12px;
-  padding: 12px;
-  font-size: 15px;
-  font-weight: 600;
-  border-radius: 10px;
+.auth-input:hover {
+  border-color: var(--border-hover);
+  background: rgba(8,12,20,0.88);
+}
+
+.auth-input:focus {
+  border-color: var(--accent-blue);
+  box-shadow: 0 0 0 3px rgba(99,179,237,0.12);
+  background: rgba(8,12,20,0.95);
+}
+
+/* autofill override */
+.auth-input:-webkit-autofill,
+.auth-input:-webkit-autofill:focus {
+  -webkit-box-shadow: 0 0 0 100px #080c14 inset;
+  -webkit-text-fill-color: var(--text-primary);
+  transition: background-color 9999s;
+}
+
+/* ============================================================
+   ERROR
+   ============================================================ */
+.auth-error {
+  font-size: 0.82rem;
+  color: #fc8181;
+  background: rgba(252,129,129,0.08);
+  border: 1px solid rgba(252,129,129,0.2);
+  border-radius: 8px;
+  padding: 9px 14px;
+  text-align: center;
+}
+
+/* ============================================================
+   BUTTONS
+   ============================================================ */
+.auth-btn-primary {
+  width: 100%;
+  padding: 13px;
+  font-family: "Syne", sans-serif;
+  font-size: 0.9rem;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  background: linear-gradient(135deg, var(--accent-blue), var(--accent-violet));
+  color: #fff;
+  border: none;
+  border-radius: 12px;
+  cursor: pointer;
+  margin-top: 0.25rem;
+  box-shadow: 0 4px 20px rgba(99,179,237,0.25);
+  transition: opacity 0.2s, transform 0.2s, box-shadow 0.2s;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  min-height: 46px;
+}
+
+.auth-btn-primary:hover:not(:disabled) {
+  opacity: 0.92;
+  transform: translateY(-2px);
+  box-shadow: 0 8px 28px rgba(99,179,237,0.38);
+}
+
+.auth-btn-primary:active:not(:disabled) {
+  transform: translateY(0);
+}
+
+.auth-btn-primary:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+/* Loading spinner inside button */
+.auth-spinner {
+  display: inline-block;
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  border: 2px solid rgba(255,255,255,0.3);
+  border-top-color: #fff;
+  animation: spin 0.75s linear infinite;
+}
+
+/* ============================================================
+   FOOTER LINK
+   ============================================================ */
+.auth-footer {
+  text-align: center;
+  margin-top: 1.5rem;
+  font-size: 0.85rem;
+  color: var(--text-faint);
+}
+
+.auth-footer button {
+  color: var(--accent-blue);
+  background: none;
   border: none;
   cursor: pointer;
-
-  background: linear-gradient(
-    135deg,
-    #18181b,
-    #3f3f46
-  );
-  color: white;
-
-  transition:
-    transform 0.15s ease,
-    box-shadow 0.15s ease,
-    background 0.15s ease;
-}
-
-.signUp-button:hover {
-  transform: translateY(-2px) scale(1.01);
-  box-shadow:
-    0 10px 20px rgba(0, 0, 0, 0.35);
-}
-
-.signUp-button:active {
-  transform: translateY(0) scale(0.98);
-  box-shadow: none;
-}
-.signIn-button {
-  margin-top: 12px;
-  padding: 12px;
-  font-size: 15px;
-  font-weight: 600;
-  border-radius: 10px;
-  border: none;
-  cursor: pointer;
-
-  background: linear-gradient(
-    135deg,
-    #18181b,
-    #3f3f46
-  );
-  color: white;
-
-  transition:
-    transform 0.15s ease,
-    box-shadow 0.15s ease,
-    background 0.15s ease;
-}
-
-.signIn-button:hover {
-  transform: translateY(-2px) scale(1.01);
-  box-shadow:
-    0 10px 20px rgba(0, 0, 0, 0.35);
-}
-
-.signIn-button:active {
-  transform: translateY(0) scale(0.98);
-  box-shadow: none;
-}
-
-/* Body reset */
-body {
-  margin: 0;
+  font-size: 0.85rem;
+  font-family: "DM Sans", sans-serif;
   padding: 0;
-  font-family: Inter, system-ui, sans-serif;
+  margin-left: 4px;
+  transition: color 0.2s;
+}
+
+.auth-footer button:hover {
+  color: var(--accent-violet);
+}
+
+/* ============================================================
+   ANIMATIONS
+   ============================================================ */
+@keyframes authIn {
+  from { opacity: 0; transform: translateY(24px) scale(0.97); }
+  to   { opacity: 1; transform: translateY(0)    scale(1);    }
+}
+
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+
+/* ============================================================
+   RESPONSIVE
+   ============================================================ */
+@media (max-width: 480px) {
+  .auth-card  { padding: 2rem 1.5rem 1.75rem; border-radius: 18px; }
+  .auth-title { font-size: 1.5rem; }
 }

@@ -6,7 +6,8 @@ import UserRouter from './routes/user/UserRoutes.js'
 import progressRoutes from "./routes/progress/UserProgress.js";
 import TotalRoutes from "./routes/progress/UserTotal.js";
 import QuesRouter from './routes/questions/QuesRoutes.js'
-import { startCronJobs } from "./Services/misc/Cron.js";
+import RAnalysis from "./routes/Analytics/RAnalysis.js";
+
 
 app.use(express.json());
 app.use(cors({
@@ -16,16 +17,16 @@ app.use(cors({
 app.use(express.json());
 
 initDB();
-startCronJobs();
+
 
 app.get('/firstCheck',(req,res)=>{
     res.send("Hey wow what a craxy thing");
 })
 app.use('/users',UserRouter);
-
 app.use("/progress", progressRoutes);
 app.use("/total",TotalRoutes);
 app.use("/questions",QuesRouter);
+app.use("/analysis",RAnalysis);
 
 app.listen(8000,()=>{
     console.log("Backend server has started, nice ")
