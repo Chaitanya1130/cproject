@@ -21,7 +21,7 @@ export default function UserQuesinProgress({ triggerRefresh }: Props) {
     setLoading(true);
     try {
       const token = localStorage.getItem("token");
-      const resp = await fetch("http://localhost:8000/users/userinprogress", {
+      const resp = await fetch("https://dsaanalysis-backend.onrender.com/users/userinprogress", {
         headers: { Authorization: `Bearer ${token}` },
       });
       if (resp.ok) {

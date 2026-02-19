@@ -1,5 +1,3 @@
-import React from "react";
-
 interface Props {
   qid: number;
   status: string;
@@ -11,7 +9,7 @@ export default function StatusSelector({ qid, status, onStatusChange }: Props) {
     try {
       const token = localStorage.getItem("token");
       const resp = await fetch(
-        `http://localhost:8000/progress/status/${qid}`,
+        `https://dsaanalysis-backend.onrender.com/progress/status/${qid}`,
         {
           method: "PATCH",
           headers: {

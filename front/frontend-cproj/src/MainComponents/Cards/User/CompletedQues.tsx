@@ -19,7 +19,7 @@ export default function CompletedQues({ triggerRefresh }: Props) {
       // Add timestamp to prevent caching
       const timestamp = Date.now();
       const resp = await fetch(
-        `http://localhost:8000/progress/getCompletedtopicnames?_t=${timestamp}`,
+        `https://dsaanalysis-backend.onrender.com/progress/getCompletedtopicnames?_t=${timestamp}`,
         {
           headers: { 
             Authorization: `Bearer ${token}`,

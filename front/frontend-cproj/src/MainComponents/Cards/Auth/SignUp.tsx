@@ -15,7 +15,7 @@ export default function SignUp() {
         setError("");
         setLoading(true);
         try {
-            const resp = await fetch("http://localhost:8000/users/register", {
+            const resp = await fetch("https://dsaanalysis-backend.onrender.com/users/register", {
                 method: "POST",
                 headers: { "Content-Type": "application/json" },
                 body: JSON.stringify({ username, email, password }),
@@ -28,6 +28,7 @@ export default function SignUp() {
             localStorage.setItem("token", res.token);
             localStorage.setItem("user", JSON.stringify(res.user));
             nav("/userhome");
+            // eslint-disable-next-line @typescript-eslint/no-unused-vars
         } catch (err) {
             setError("Something went wrong. Please try again.");
         } finally {

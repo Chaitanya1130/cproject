@@ -127,7 +127,7 @@ export default function AnalyticsPage() {
         setLoading(true);
         try {
             const token = localStorage.getItem("token");
-            const resp = await fetch("http://localhost:8000/analysis/data", {
+            const resp = await fetch("https://dsaanalysis-backend.onrender.com/analysis/data", {
                 headers: { Authorization: `Bearer ${token}` },
             });
             if (resp.ok) {

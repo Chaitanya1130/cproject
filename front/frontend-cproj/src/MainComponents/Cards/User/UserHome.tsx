@@ -155,10 +155,10 @@ export default function UserHome() {
     const headers = { Authorization: `Bearer ${token}` };
     try {
       const [userResp, topicResp, todayResp, revResp] = await Promise.all([
-        fetch("http://localhost:8000/users/userhome", { headers }),
-        fetch("http://localhost:8000/questions/topics", { headers }),
-        fetch("http://localhost:8000/questions/today", { headers }),
-        fetch("http://localhost:8000/questions/revision", { headers }),
+        fetch("https://dsaanalysis-backend.onrender.com/users/userhome", { headers }),
+        fetch("https://dsaanalysis-backend.onrender.com/questions/topics", { headers }),
+        fetch("https://dsaanalysis-backend.onrender.com/questions/today", { headers }),
+        fetch("https://dsaanalysis-backend.onrender.com/questions/revision", { headers }),
       ]);
       if (userResp.ok) setUser(await userResp.json());
       if (topicResp.ok) {
@@ -189,7 +189,7 @@ export default function UserHome() {
   const submitStatusUpdate = async (qid: number, status: string, solvedIndependently: boolean) => {
     try {
       const token = localStorage.getItem("token");
-      const resp = await fetch("http://localhost:8000/questions/update-status", {
+      const resp = await fetch("https://dsaanalysis-backend.onrender.com/questions/update-status", {
         method: "POST",
         headers: { "Content-Type": "application/json", Authorization: `Bearer ${token}` },
         body: JSON.stringify({ qid, status, solvedIndependently }),
@@ -222,7 +222,7 @@ export default function UserHome() {
     if (!practiceTopic) return;
     try {
       const token = localStorage.getItem("token");
-      const resp = await fetch("http://localhost:8000/questions/start", {
+      const resp = await fetch("https://dsaanalysis-backend.onrender.com/questions/start", {
         method: "POST",
         headers: { "Content-Type": "application/json", Authorization: `Bearer ${token}` },
         body: JSON.stringify({ topic: practiceTopic }),
