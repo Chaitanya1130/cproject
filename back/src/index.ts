@@ -10,8 +10,13 @@ import RAnalysis from "./routes/Analytics/RAnalysis.js";
 
 
 app.use(express.json());
+const allowedOrigins = [
+    'http://localhost:5173', // Local dev
+    'https://dsaanalysis-frontend.vercel.app' // Your NEW Vercel URL
+];
 app.use(cors({
-  origin: "http://localhost:5173"
+    origin: allowedOrigins,
+    credentials: true
 }));
 
 app.use(express.json());
