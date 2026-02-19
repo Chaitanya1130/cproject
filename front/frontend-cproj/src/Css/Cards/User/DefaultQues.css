@@ -1,8 +1,8 @@
-/* DefaultQues.css — matches UserProfile.css design system */
+/* DefaultQues.css — no status, card grid layout */
 
 .displayQues {
   width: 100%;
-  padding: 0.5rem 0 2rem;
+  padding: 0.25rem 0 3rem;
   display: flex;
   flex-direction: column;
 }
@@ -13,7 +13,7 @@
   font-size: 1.1rem;
   font-weight: 700;
   color: var(--text-primary);
-  margin-bottom: 1.5rem;
+  margin-bottom: 1.75rem;
   padding-bottom: 1rem;
   border-bottom: 1px solid var(--border);
   display: flex;
@@ -28,33 +28,31 @@
   height: 7px;
   border-radius: 50%;
   background: var(--accent-blue);
-  box-shadow: 0 0 6px rgba(99,179,237,0.6);
+  box-shadow: 0 0 8px rgba(99,179,237,0.6);
   flex-shrink: 0;
 }
 
 /* ---- Pattern group ---- */
 .patternSection {
-  margin-bottom: 2rem;
-  width: 100%;
+  margin-bottom: 2.5rem;
 }
 
 .patternHeader {
   font-family: 'Syne', sans-serif;
-  font-size: 0.75rem;
+  font-size: 0.72rem;
   font-weight: 700;
-  letter-spacing: 0.1em;
+  letter-spacing: 0.12em;
   text-transform: uppercase;
   color: var(--text-muted);
-  padding-bottom: 0.75rem;
-  margin-bottom: 0.75rem;
+  padding-bottom: 0.85rem;
+  margin-bottom: 1rem;
   border-bottom: 1px solid var(--border);
   display: flex;
   align-items: center;
-  gap: 0.6rem;
+  gap: 0.55rem;
 }
 
-.patternHeader::before {
-  content: '';
+.patternDot {
   display: inline-block;
   width: 5px;
   height: 5px;
@@ -63,67 +61,59 @@
   flex-shrink: 0;
 }
 
-/* ---- Table wrapper ---- */
-.quesTable {
-  width: 100%;
+.patternCount {
+  margin-left: auto;
+  font-size: 0.68rem;
+  font-weight: 600;
+  color: var(--text-faint);
+  background: rgba(99,179,237,0.07);
+  border: 1px solid var(--border);
+  border-radius: 20px;
+  padding: 1px 8px;
+  letter-spacing: 0;
+}
+
+/* ---- Question cards grid ---- */
+.quesGrid {
+  display: flex;
+  flex-direction: column;
+  gap: 0.55rem;
+}
+
+.quesCard {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  padding: 0.9rem 1.1rem;
   background: var(--bg-surface);
   border: 1px solid var(--border);
-  border-radius: var(--radius-lg);
-  overflow: hidden;
-  box-shadow: var(--shadow-card);
+  border-radius: 12px;
+  transition: background 0.18s, border-color 0.18s, transform 0.15s;
+  cursor: default;
 }
 
-/* ---- Row grid ---- */
-.quesRow {
-  display: grid;
-  grid-template-columns: 2fr 1.2fr 80px 140px;
-  align-items: center;
-  gap: 1rem;
-  padding: 0.85rem 1.25rem;
-  border-top: 1px solid var(--border);
-  font-size: 0.88rem;
-  color: var(--text-primary);
-  transition: background 0.2s, transform 0.15s;
+.quesCard:hover {
+  background: rgba(99,179,237,0.04);
+  border-color: rgba(99,179,237,0.25);
+  transform: translateX(3px);
 }
 
-.quesRow:hover:not(.header) {
-  background: rgba(99,179,237,0.03);
-  transform: translateX(2px);
-}
-
-.quesRow.header {
-  background: rgba(99,179,237,0.05);
-  font-family: 'Syne', sans-serif;
-  font-weight: 700;
-  font-size: 0.7rem;
-  letter-spacing: 0.1em;
-  text-transform: uppercase;
-  color: var(--text-muted);
-  border-top: none;
-  padding-top: 0.9rem;
-  padding-bottom: 0.9rem;
-}
-
-/* ---- Cell types ---- */
-.problemName {
+/* ---- Question name ---- */
+.quesName {
+  font-family: 'DM Sans', sans-serif;
+  font-size: 0.9rem;
   font-weight: 500;
   color: var(--text-primary);
-  overflow: hidden;
-  text-overflow: ellipsis;
-  white-space: nowrap;
-}
-
-.quesRow:not(.header) span:nth-child(2) {
-  color: var(--text-muted);
-  font-size: 0.82rem;
-  font-style: italic;
-  overflow: hidden;
-  text-overflow: ellipsis;
-  white-space: nowrap;
+  line-height: 1.45;
+  /* allow wrapping — no ellipsis */
+  word-break: break-word;
+  flex: 1;
 }
 
 /* ---- Open button ---- */
 .openBtn {
+  flex-shrink: 0;
   display: inline-flex;
   align-items: center;
   justify-content: center;
@@ -133,83 +123,30 @@
   background: transparent;
   color: var(--text-muted);
   font-family: 'Syne', sans-serif;
-  font-size: 0.78rem;
+  font-size: 0.76rem;
   font-weight: 600;
   letter-spacing: 0.04em;
   cursor: pointer;
-  transition: color 0.2s, border-color 0.2s, background 0.2s;
+  transition: color 0.18s, border-color 0.18s, background 0.18s;
   white-space: nowrap;
-  width: 100%;
 }
 
 .openBtn:hover {
   color: var(--accent-blue);
-  border-color: var(--border-hover);
-  background: rgba(99,179,237,0.06);
-}
-
-/* ---- Status select ---- */
-.statusSelect {
-  width: 100%;
-  padding: 6px 10px;
-  font-family: 'Syne', sans-serif;
-  font-size: 0.78rem;
-  font-weight: 600;
-  letter-spacing: 0.03em;
-  background: var(--bg-base);
-  color: var(--text-muted);
-  border: 1px solid var(--border);
-  border-radius: 8px;
-  cursor: pointer;
-  transition: border-color 0.2s, color 0.2s, background 0.2s;
-  appearance: none;
-  -webkit-appearance: none;
-  text-align: center;
-  outline: none;
-}
-
-.statusSelect:focus {
-  border-color: var(--accent-blue);
-  box-shadow: 0 0 0 3px rgba(99,179,237,0.12);
-}
-
-.statusSelect option {
-  background: var(--bg-raised);
-  color: var(--text-primary);
-}
-
-.statusSelect.not_started { border-color: var(--text-faint); }
-
-.statusSelect.learning {
-  border-color: rgba(246,173,85,0.45);
-  color: var(--accent-amber);
-  background: rgba(246,173,85,0.05);
-}
-
-.statusSelect.done {
-  border-color: rgba(104,211,145,0.45);
-  color: var(--accent-green);
-  background: rgba(104,211,145,0.05);
-}
-
-.statusSelect.revise {
-  border-color: rgba(159,122,234,0.45);
-  color: var(--accent-violet);
-  background: rgba(159,122,234,0.05);
+  border-color: rgba(99,179,237,0.4);
+  background: rgba(99,179,237,0.07);
 }
 
 /* ---- Responsive ---- */
-@media (max-width: 500px) {
-  .quesRow {
-    grid-template-columns: 1fr 90px;
-    gap: 0.6rem;
+@media (max-width: 480px) {
+  .quesCard {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.65rem;
   }
 
-  /* Hide pattern + action columns on very small screens */
-  .quesRow span:nth-child(2),
-  .quesRow span:nth-child(3),
-  .quesRow.header span:nth-child(2),
-  .quesRow.header span:nth-child(3) {
-    display: none;
+  .openBtn {
+    width: 100%;
+    justify-content: center;
   }
 }

@@ -12,11 +12,10 @@ interface Props {
   onStatusChange: () => void;
 }
 
-export default function UserDefaultQues({ onStatusChange }: Props) {
+// eslint-disable-next-line no-empty-pattern
+export default function UserDefaultQues({ }: Props) {
   const [ques, setQues] = useState<Question[]>([]);
-  const [progressMap, setProgressMap] = useState<Record<number, string>>({});
 
-  /* ---- Fetch all questions ---- */
   useEffect(() => {
     const fetchQues = async () => {
       const token = localStorage.getItem("token");
@@ -31,24 +30,6 @@ export default function UserDefaultQues({ onStatusChange }: Props) {
     fetchQues();
   }, []);
 
-  /* ---- Fetch user progress ---- */
-  useEffect(() => {
-    const fetchProgress = async () => {
-      const token = localStorage.getItem("token");
-      const resp = await fetch("https://dsaanalysis-backend.onrender.com/progress", {
-        headers: { Authorization: `Bearer ${token}` },
-      });
-      if (resp.ok) {
-        const data = await resp.json();
-        const map: Record<number, string> = {};
-        data.progress.forEach((p: any) => { map[p.qid] = p.status; });
-        setProgressMap(map);
-      }
-    };
-    fetchProgress();
-  }, []);
-
-  /* ---- Group by pattern ---- */
   const groupQues = useMemo(() => {
     const res: Record<string, Question[]> = {};
     ques.forEach((q) => {
@@ -59,84 +40,38 @@ export default function UserDefaultQues({ onStatusChange }: Props) {
     return res;
   }, [ques]);
 
-  /* ---- Handlers ---- */
-  const updateStatus = async (qid: number, status: string) => {
-    const token = localStorage.getItem("token");
-    const resp = await fetch(`https://dsaanalysis-backend.onrender.com/progress/status/${qid}`, {
-      method: "PATCH",
-      headers: {
-        "Content-Type": "application/json",
-        Authorization: `Bearer ${token}`,
-      },
-      body: JSON.stringify({ status }),
-    });
-    if (resp.ok) {
-      setProgressMap((prev) => ({ ...prev, [qid]: status }));
-      onStatusChange();
-    }
-  };
-
-  const handleOpen = async (qid: number, link: string) => {
-    const token = localStorage.getItem("token");
-    const resp = await fetch(`https://dsaanalysis-backend.onrender.com/progress/open/${qid}`, {
-      method: "POST",
-      headers: { Authorization: `Bearer ${token}` },
-    });
-    if (resp.ok) {
-      setProgressMap((prev) => ({ ...prev, [qid]: prev[qid] ?? "learning" }));
-      onStatusChange();
-    }
+  const handleOpen = (link: string) => {
     window.open(link, "_blank", "noopener,noreferrer");
   };
 
   return (
-    <div className="displayQues">
-      <h2 className="sectionTitle">All Questions</h2>
+      <div className="displayQues">
+        <h2 className="sectionTitle">All Questions</h2>
 
-      {Object.keys(groupQues).map((pattern) => (
-        <div key={pattern} className="patternSection">
-          <h3 className="patternHeader">{pattern}</h3>
+        {Object.keys(groupQues).map((pattern) => (
+            <div key={pattern} className="patternSection">
+              <h3 className="patternHeader">
+                <span className="patternDot" />
+                {pattern}
+                <span className="patternCount">{groupQues[pattern].length}</span>
+              </h3>
 
-          <div className="quesTable">
-            {/* Header row */}
-            <div className="quesRow header">
-              <span>Problem</span>
-              <span>Pattern</span>
-              <span>Link</span>
-              <span>Status</span>
-            </div>
-
-            {/* Data rows */}
-            {groupQues[pattern].map((q) => (
-              <div className="quesRow" key={q.qid}>
-                <span className="problemName">{q.qname}</span>
-                <span>{q.qpattern}</span>
-                <span>
-                  <button
-                    type="button"
-                    className="openBtn"
-                    onClick={() => handleOpen(q.qid, q.link)}
-                  >
-                    Open ↗
-                  </button>
-                </span>
-                <span>
-                  <select
-                    className={`statusSelect ${progressMap[q.qid] ?? "not_started"}`}
-                    value={progressMap[q.qid] ?? "not_started"}
-                    onChange={(e) => updateStatus(q.qid, e.target.value)}
-                  >
-                    <option value="not_started">Not Started</option>
-                    <option value="learning">Learning</option>
-                    <option value="done">Done</option>
-                    <option value="revise">Revise</option>
-                  </select>
-                </span>
+              <div className="quesGrid">
+                {groupQues[pattern].map((q) => (
+                    <div className="quesCard" key={q.qid}>
+                      <span className="quesName">{q.qname}</span>
+                      <button
+                          type="button"
+                          className="openBtn"
+                          onClick={() => handleOpen(q.link)}
+                      >
+                        Open ↗
+                      </button>
+                    </div>
+                ))}
               </div>
-            ))}
-          </div>
-        </div>
-      ))}
-    </div>
+            </div>
+        ))}
+      </div>
   );
 }
